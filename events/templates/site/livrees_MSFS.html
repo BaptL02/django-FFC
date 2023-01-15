@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% load static %}
+
+<form method="GET" action="{% url 'livrees_MSFS' %}" class="search-form">
+  <input type="text" name="q" placeholder="Recherche par titre, immatriculation, éditeur">
+  <input type="submit" value="Recherche">
+</form>
+
+
+<button class="bouton-filtre" data-url="{% url 'AIRBUS' %}" onclick="location.href=this.dataset.url">Airbus</button>
+<button class="bouton-filtre" data-url="{% url 'BOEING' %}" onclick="location.href=this.dataset.url">Boeing</button>
+<button class="bouton-filtre" data-url="{% url 'LEGER' %}" onclick="location.href=this.dataset.url">Léger</button><br>
+<button class="bouton-effacer" data-url="{% url 'livrees_MSFS' %}" onclick="location.href=this.dataset.url">Effacer la recherche / les filtres</button>
+
+  {% for i in livrees %}
+  <div class="frame livrees">
+    <p>{{i.avion}} / {{i.editeur}}</p>
+    <h3> {{i.immat}}</h3>
+    <div class="row">
+      <img src="{{i.photo1.url}}" alt="{{i.immat}}" />
+      <img src="{{i.photo2.url}}" alt="{{i.immat}}" />
+    </div>
+    <a href="{{i.lien}}" class="button">Télécharger</a>
+  </div>
+  {% endfor %}
+{% endblock %}

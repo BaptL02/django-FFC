@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="frame">
+    <p id="text_doc">Fonctionnement du club</p>
+    {% for i in docs %}
+    {% if i.categorie == "FT" %}
+    <div class="frame_doc">
+        <a href="{{i.lien}}"> {{ i.titre }}</a>
+    </div>
+    {% endif %}
+    {% endfor %}
+</div>
+
+<div class="frame">
+    <p id="text_doc">ATO</p>
+    {% for i in docs %}
+    {% if i.categorie == "AT" %}
+    <div class="frame_doc">
+        <a href="{{i.lien}}"> {{ i.titre }}</a>
+    </div>
+    {% endif %}
+    {% endfor %}
+    <div class="frame_doc">
+        <a href="{% url 'formation_list' %}"> Formations</a>
+    </div>
+</div>
+
+{% endblock %}

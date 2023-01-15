@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block content%}
+
+
+{% for sondage in sondages %}
+{% if sondage.type == "QCM" %}
+<div class="frame poll">
+    <form method="post" action="{% url 'vote' %}">
+        {% csrf_token %}
+        <p>{{ sondage.titre }}</p>
+        <h3>{{ sondage.description }}</h3>
+        {% for choix in sondage.choixsondage_set.all %}
+            <input type="checkbox" name="choix" value="{{ choix.id }}"> {{ choix.choix }}<br>
+        {% endfor %}
+        <input type="submit" class="button sondage" value="Valider">
+    </form>
+</div>
+{% endif %}
+
+{% if sondage.type == "BI" %}
+<div class="frame poll">
+    <form method="post" action="{% url 'vote' %}">
+        {% csrf_token %}
+        <p>{{ sondage.titre }}</p>
+        <h3>{{ sondage.description }}</h3>
+        {% for choix in sondage.choixsondage_set.all %}
+        <input type="radio" name="choix" value="{{ choix.id }}"> {{ choix.choix }}<br>
+        {% endfor %}
+        <input type="submit" class="button sondage" value="Valider">
+    </form>
+</div>
+{% endif %}
+
+{% endfor %}
+
+
+{% endblock %}

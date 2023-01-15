@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% for event in events %}
+{% if event.status == "InProgress" %}
+<div class="welcome IP">
+    <h1>Evenement en cours</h1>
+    <div class="container IP">
+        <div class="announcement IP">
+            <h2>{{event.title}}</h2>
+            <img src="{{event.image}}" alt="{{event.title}}">
+            <p>{{event.description |linebreaks }}</p>
+            <p>Fini le {{event.date_fin}}</p>
+        </div>
+    </div>
+</div>
+{% endif %}
+{% endfor %}
+
+<div class="frame">
+    <p>Les sondages relatifs aux événements sont disponibles <a href="{% url 'sondage' %}">ici</a>.</p>
+</div>
+
+<div class="welcome">
+    <h1>Nos prochains événements</h1>
+    <div class="container">
+        {% for event in events %}
+        {% if event.status == "Soon" %}
+        <div class="announcement">
+            <h2>{{event.title}}</h2>
+            <img src="{{event.image}}" alt="{{event.title}}">
+            <p>{{event.description |linebreaks }}</p>
+            <p>Du {{event.date_debut}} au {{event.date_fin}}</p>
+        </div>
+        {% endif %}
+        {% endfor %}
+    </div>
+</div>
+
+<div class="welcome">
+    <h1>Nos événements passés</h1>
+    <div class="container passed">
+        {% for event in events %}
+        {% if event.status == "Passed" %}
+        <div class="announcement">
+            <h2>{{event.title}}</h2>
+            <img src="{{event.image}}" alt="{{event.title}}">
+            <p>{{event.description |linebreaks}}</p>
+            <p>Du {{event.date_debut}} au {{event.date_fin}}</p>
+        </div>
+        {% endif %}
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}

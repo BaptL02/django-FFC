@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% load static %}
+
+{% for i in livrees %}
+<div class="frame livrees">
+  <p>{{i.avion}} / {{i.editeur}}</p>
+  <h3> {{i.immat}}</h3>
+  <div class="row">
+    <img src="{{i.photo1.url}}" alt="{{i.immat}}" width="40%" height="auto" />
+    <img src="{{i.photo2.url}}" alt="{{i.immat}}" width="40%" height="auto" />
+  </div>
+  <a href="{{i.lien}}" class="button">Télécharger</a>
+</div>
+{% endfor %}
+
+{% endblock %}

@@ -1,0 +1,67 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <!-- CSS -->
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <!-- CSS -->
+
+    <!-- GOOGLE TRACKERS -->
+    <!--<script async src="https://www.googletagmanager.com/gtag/js?id=G-0ZMD04ER74"></script>
+    <script type="text/javascript" src="/js/gtag.js"></script> -->
+    <!-- GOOGLE TRACKERS -->
+
+    <!-- META -->
+    <meta charset="UTF-8">
+    <!-- META -->
+
+    <!-- TITLE -->
+    <title>French Flying Club</title>
+    <!-- TITLE -->
+
+    <!-- FAVICON -->
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'asset/Flying_Club_vACC-Logo-500.png' %}">
+    <!-- FAVICON -->
+</head>
+
+
+<body>
+    <header>
+        <img id="img1" src="{% static 'asset/Flying_Club_vACC-Logo-500.png' %}" alt="logo" />
+        <div class="nav_links">
+            <a href="{% url 'index' %}">Le Club</a>
+            <a href="{% url 'events' %}">Événements</a>
+            <a href="{% url 'livrees' %}">Nos Livrées</a>
+            <a href="{% url 'doc' %}">Documentation</a>
+            <a href="{% url 'voltige' %}">Pains Acrobatiques</a>
+            <a href="{% url 'contact' %}">Contact</a>
+
+        </div>
+
+        <div class="langue">
+            <p>English website : </p>
+            <div id="lang_img">
+                <a href="https://frenchflyingclub.org/en/"><img src="{% static 'asset/en.png' %}" alt="en" /></a>
+            </div>
+        </div>
+    </header>
+
+    {% block content %}
+
+
+    {% endblock %}
+
+    <footer>
+        <div class="bas">
+            <div class="vatsim_footer">
+                <a href="https://vatsim.net"><img src="{% static 'asset/Footer-Vatsim.png' %}"></a>
+            </div>
+            <div class="privacy_footer">
+                <a href="privacy-policy.html">Privacy policy
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>

@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% load static%}
+<div class="frame">
+    <p> Depuis peu le French Flying Club dispose d'une flotte de TB30. Ils forment la "Patrouille Baguette". <br>
+        La patrouille des "Pains Acrobatiques Français", est nommée en hommage à sa grande soeur composée d'Alpha
+        Jets.<br>
+        Cette patrouille à pour but de réaliser diverses activités aériennes telles que le vol en patrouille, la
+        représentation du club à certains évenements ou la voltige aérienne en patrouille ou en solo.<br>
+        Chaque aéronef qui compose la patrouille possède le callsign "BREAD" suivi du numéro de sa place dans la
+        patrouille.<br>
+        Les vols sont organisés de manière occasionnelle pour les patrouilles de 3 appareils ou plus, les plus petites
+        patrouilles se forment de manière spontanée. <br><br></p>
+    <img src="{% static 'asset/French_Flying_Club-PAF-Logov0.7.png' %}" alt="back" height="auto" width="25%"><br><br>
+    <p>
+</div>
+
+{% for i in livrees %}
+<div class="frame livrees">
+  <p>{{i.avion}} / {{i.editeur}}</p>
+  <h3> {{i.immat}}</h3>
+  <div class="row">
+    <img src="{{i.photo1.url}}" alt="{{i.immat}}" width="40%" height="auto" />
+    <img src="{{i.photo2.url}}" alt="{{i.immat}}" width="40%" height="auto" />
+  </div>
+  <a href="{{i.lien}}" class="button">Télécharger</a>
+</div>
+{% endfor %}
+
+{% endblock %}

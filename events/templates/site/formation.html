@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% load static %}
+
+<form method="GET" action="{% url 'formation_list' %}" class="search-form">
+    <input type="text" name="q" placeholder="Recherche par nom">
+    <input type="submit" value="Recherche">
+</form>
+
+<button class="bouton-effacer" data-url="{% url 'formation_list' %}" onclick="location.href=this.dataset.url">Effacer la recherche</button>
+
+
+
+<div class="frame">
+    <div class="text_doc formation">
+        <p>Formations</p>
+    </div>
+    {% for i in formations %}
+    <a href="youtube.com"><img src="{{ i.image.url }}" alt="image formation {{ i.titre }}" id="minia_formation"></a>
+    {% empty %}
+    <div class="frame_doc">
+        <a href=""> Aucune formation disponible</a>
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="frame">
+    <p id="text_doc">VMR</p>
+    {% for i in vmr %}
+    <div class="frame_doc">
+        <a href="{{i.lien}}"> {{ i.titre }}</a>
+    </div>
+    {% empty %}
+    <div class="frame_doc">
+        <a href=""> Aucun VMR disponible</a>
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock %}
