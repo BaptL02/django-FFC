@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.db.models import Q
+from datetime import datetime
 
 from events.models import Event
 from events.models import Annonce
@@ -11,9 +12,16 @@ from events.models import Sondage, ChoixSondage
 
 # Create your views here.
 
+
+
 def events(request):
-    event = Event.objects.all()
-    return render(request, "site/events.html", context={"events" : event})
+    current_date = datetime.now().date()
+    upcoming_events = Event.objects.filter(date_debut__gte=current_date)
+    past_events = Event.objects.filter(date_fin__lt=current_date)
+    return render(request, "site/events.html", context={
+        "upcoming_events": upcoming_events,
+        "past_events": past_events
+    })
 
 def index(request):
     annonce = Annonce.objects.order_by('-id')
