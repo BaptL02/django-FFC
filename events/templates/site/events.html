@@ -26,7 +26,7 @@
         {% for event in past_events %}
         <div class="announcement">
             <h2>{{event.title}}</h2>
-            <h6>Du {{event.format_date_debut}} au {{event.format_date_fin}}</h6>
+            <h5>Du {{event.format_date_debut}} au {{event.format_date_fin}}</h5>
             <img src="{{event.image}}" alt="{{event.title}}">
             <p>{{event.description |linebreaks}}</p>
         </div>
