@@ -60,8 +60,6 @@ header {
   padding-left: 10px;
 }
 
-/* Logo FFC */
-
 /* Passage sur le site anglais */
 .langue {
   background-color: #2483c5;
@@ -579,10 +577,15 @@ footer {
 .announcement img {
   width: 60%;
   height: auto;
+  border-radius: 5px;
 }
 
 .container.passed {
   opacity: 0.5;
+}
+
+.announcement h5{
+  margin-bottom: 3%;
 }
 
 .container.IP {

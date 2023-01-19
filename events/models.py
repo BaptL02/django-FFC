@@ -1,4 +1,5 @@
 from django.db import models
+import locale
 
 # Create your models here.
 """
@@ -15,21 +16,14 @@ class Event(models.Model):
     date_fin = models.DateTimeField()
     event_id = models.IntegerField()
     image = models.URLField()
-    In_progress = 'InProgress'
-    Soon = 'Soon'
-    Passed = 'Passed'
-    STATUS = [
-        (In_progress, 'En cours'),
-        (Soon, 'Programmé'),
-        (Passed, 'Passed'),
-    ]
-    status = models.CharField(
-        max_length=10,
-        choices=STATUS,
-        default=Soon,
-    )
     def __str__(self):
         return f"{self.title} ({self.date_debut})"
+    def format_date_debut(self):
+        locale.setlocale(locale.LC_TIME, 'fr_FR')
+        return self.date_debut.strftime("%A %d %B à %Hh%M")
+    def format_date_fin(self):
+        locale.setlocale(locale.LC_TIME, 'fr_FR')
+        return self.date_fin.strftime("%A %d %B à %Hh%M")
 
 """
 Annonce 
