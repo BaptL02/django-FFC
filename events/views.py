@@ -12,8 +12,6 @@ from events.models import Sondage, ChoixSondage
 
 # Create your views here.
 
-
-
 def events(request):
     current_date = datetime.now().date()
     upcoming_events = Event.objects.filter(date_debut__gte=current_date)

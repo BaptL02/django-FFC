@@ -3,7 +3,7 @@
 {% block content %}
 
 <div class="frame">
-    <p id="text_doc">Fonctionnement du club</p>
+    <h5>Fonctionnement du club</h5>
     {% for i in docs %}
     {% if i.categorie == "FT" %}
     <div class="frame_doc">
@@ -14,7 +14,7 @@
 </div>
 
 <div class="frame">
-    <p id="text_doc">ATO</p>
+    <h5>ATO</h5>
     {% for i in docs %}
     {% if i.categorie == "AT" %}
     <div class="frame_doc">
