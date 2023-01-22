@@ -20,10 +20,10 @@ class Event(models.Model):
         return f"{self.title} ({self.date_debut})"
     def format_date_debut(self):
         locale.setlocale(locale.LC_TIME, 'fr_FR')
-        return self.date_debut.strftime("%A %d %B à %Hh%M")
+        return self.date_debut.strftime("%A %d %B à %H%M")
     def format_date_fin(self):
         locale.setlocale(locale.LC_TIME, 'fr_FR')
-        return self.date_fin.strftime("%A %d %B à %Hh%M")
+        return self.date_fin.strftime("%A %d %B à %H%M")
 
 """
 Annonce 

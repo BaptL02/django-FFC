@@ -475,30 +475,7 @@ footer {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  align-items: center + 10px;
   justify-content: center;
-  gap: 20px;
-  margin-left: 20px;
-}
-
-.button {
-  background-color: #0c2d45;
-  border: none;
-  color: white;
-  padding: 2%;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 20px;
-  cursor: pointer;
-  margin-bottom: 8px;
-  margin-top: 20px;
-  margin-bottom: 20px;
-  border-radius: 25px;
-}
-
-.button:hover {
-  background-color: white;
-  color: #0c2d45;
 }
 
 .frame p {
@@ -511,30 +488,16 @@ footer {
   color: black;
 }
 
-.frame_contact {
-  box-shadow: 1px 1px 20px black;
-  background-color: #2483c5;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 40%;
-  height: auto;
-  border-radius: 25px;
-  margin-top: 50px;
-}
-
-.frame_contact p {
-  font-size: 20px;
-  font-style: normal;
-  font-variant: normal;
+.frame h5{
+  font-size: 30px;
   font-weight: 700;
   line-height: 33px;
   text-align: center;
-  color: black;
-  padding-top: 15px;
+  color: white;
+  margin: 2%;
 }
 
-.frame_contact #vatsim {
+#vatsim {
   border-radius: 25px;
   width: 20%;
 }
@@ -642,9 +605,6 @@ footer {
   box-shadow: 1px 1px 20px black;
 }
 
-#text_doc {
-  padding: 2%;
-}
 
 /*end page doc */
 
@@ -730,6 +690,10 @@ footer {
   border-radius: 10px;
 }
 
+.bouton-filtre.livrees {
+  background-color: #0c2d45; 
+}
+
 .bouton-filtre:hover {
   background-color: #63a1ce;
 }
@@ -742,25 +706,25 @@ footer {
   flex-direction: column;
   width: 80%;
   height: auto;
-  border-radius: 25px;
+  border-radius: 10px;
   margin: 0 auto;
   margin-top: 50px;
   padding: 20px;
 }
 
 .frame.frame2{
-  width: 40%;
+  width: 45%;
 }
 
 
-.frame.livrees img {
+.frame2.livrees img {
   width: 40%;
   height: auto;
   border-radius: 10px;
   margin: 10px;
 }
 
-.frame.livrees p {
+.frame2.livrees p {
   font-size: 30px;
   font-weight: 700;
   line-height: 33px;
@@ -769,25 +733,13 @@ footer {
   margin: 2%;
 }
 
-.frame.livrees h3 {
+.frame2.livrees h3 {
   font-size: 20px;
   font-weight: 700;
   line-height: 33px;
   text-align: center;
   color: white;
   margin: 1%;
-}
-
-.frame.livrees a.button {
-  background-color: #f2f2f2;
-  color: #2483c5;
-  padding: 10px 20px;
-  border-radius: 20px;
-  text-align: center;
-  text-decoration: none;
-  font-size: 18px;
-  margin: 20px auto;
-  display: block;
 }
 
 /*end livrees*/
