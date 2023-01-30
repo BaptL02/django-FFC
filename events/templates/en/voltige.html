@@ -1,0 +1,30 @@
+{% extends "base_en.html" %}
+
+{% block content %}
+{% load static%}
+<div class="frame">
+  <p> The "Pains Acrobatiques Français" gets their name from their big sister made up of Alpha Jets as an homage. The
+    team's goal is to perform a variety of aerial activities from formation flights to representing the Flying Club
+    during public displays, and, of course aerobatics!<br>
+    Each wingman uses the "BREAD" callsign followed by the number determining their position in the formation.<br>
+    Formation flights of 3 or more aircraft are planned on an occasional basis, smaller formations are mainly
+    spontaneous. <br><br></p>
+  <img src="{% static 'asset/French_Flying_Club-PAF-Logov0.7.png' %}" alt="back" height="auto" width="25%"><br><br>
+  <p>
+</div>
+<div class="row">
+  {% for i in livrees %}
+  <div class="frame frame2 livrees">
+    <p>{{i.avion}} </p>
+    <h3> Registration : {{i.immat}}</h3>
+    <h3> Edited by : {{i.editeur}}</h3>
+    <div class="row">
+      <img src="{{i.photo1.url}}" alt="{{i.immat}}" />
+      <img src="{{i.photo2.url}}" alt="{{i.immat}}" />
+    </div>
+    <a href="{{i.lien}}" class="bouton-filtre livrees">Download</a>
+  </div>
+  {% endfor %}
+</div>
+
+{% endblock %}

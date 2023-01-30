@@ -1,0 +1,37 @@
+{% extends "base_en.html" %}
+
+{% block content %}
+
+<div class="welcome">
+    <h1>Our next events</h1>
+    <div class="container">
+        {% for event in upcoming_events %}
+        <div class="announcement">
+            <h2>{{event.title}}</h2>
+            <h5>From {{event.format_date_debut}}z to {{event.format_date_fin}}z</h5>
+            <img src="{{event.image}}" alt="{{event.title}}">
+            <p>{{event.description |linebreaks }}</p>
+        </div>
+        {% empty %}
+        <h4>No events planned...</h4>
+        {% endfor %}
+    </div>
+</div>
+
+<div class="welcome">
+    <h1>Our passed events</h1>
+    <div class="container passed">
+        {% for event in past_events %}
+        <div class="announcement">
+            <h2>{{event.title}}</h2>
+            <h5>From {{event.format_date_debut}}z to {{event.format_date_fin}}z</h5>
+            <img src="{{event.image}}" alt="{{event.title}}">
+            <p>{{event.description |linebreaks}}</p>
+        </div>
+        {% empty %}
+        <h4>No passed events...</h4>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}

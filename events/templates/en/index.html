@@ -1,0 +1,123 @@
+{% extends "base_en.html" %}
+
+{% block content %}
+{% load static %}
+
+<!-- ALERT -->
+<div class="alert">
+    <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+    <strong>We are on discord ! Go on</strong> <a href="{% url 'contact' %}"> contact </a>
+</div>
+<!-- ALERT -->
+
+<!-- BIENVENUE -->
+<div class="welcome">
+    <h1>Welcome to the French Flying Club !</h1>
+    <div class="container">
+        {% for i in annonces %}
+        <div class="announcement">
+            <h2>{{ i.title }}</h2>
+            <h6>{{ i.author }}</h6>
+            <p>{{ i.content |linebreaks }}</p>
+        </div>
+        {%empty%}
+        <h5>No announcements ...</h5>
+        {% endfor %}
+    </div>
+</div>
+<!-- BIENVENUE -->
+
+
+<!-- Corps -->
+<div class="parent">
+
+    <div class="div1">
+        <div>
+            <div id="titre">
+                The birth of the club:
+            </div>
+            <div class="intro">
+                <p>The French Flying Club is a group of <a href="https://vatsim.fr" target="_blank">French vACC</a>
+                    pilots who wanted to get together to fly.</p>
+                <p> The French Flying Club is not a typical VA in the stricter definition but rather, as per its name,
+                    an open flying
+                    club. There are no activity obligations nor flight tracking; we only hold a digital logbook used as
+                    an old-school
+                    "Journey Log" with basic information including departure, destination airports and aircraft type.
+                </p>
+                <p> This club is here to help both new and older pilots to perfect their skills, either in VFR or IFR
+                    (in all kinds of
+                    aircraft), but also to promote flights and activities in France (Dear ATC, yes everywhere) on Vatsim
+                    in a flying
+                    club spirit. The club also serves as an introduction medium to network flying, or flying in general,
+                    following
+                    Vatsim's "educate" motto.</p>
+            </div>
+        </div>
+    </div>
+    <div class="div2">
+        <img src="{% static 'asset/FFC_born.png' %}" alt="Image de présentation 2">
+    </div>
+    <div class="div3">
+        <img src="{% static 'asset/47C.png' %}" alt="Image de présentation 3">
+    </div>
+    <div class="div4">
+        <div>
+            <div id="titre">
+                How to recognize it?
+            </div>
+            <div class="intro">
+                <p> The club's identity in itself is simple but explicit, staying faithful to its roots as a French
+                    Club. The callsign
+                    for the club is "French Baguette", using "FBT" as ICAO code.</p>
+                <p> Our aircraft wear a livery reflecting on the group's symbols : baguettes (obvious, isn't it?), an
+                    ear of wheat, and,
+                    of course, airplanes. All of this in the country's colors : blue, white, and red... with a touch of
+                    yellow for the
+                    wheat. You'll find all of our liveries, their VMR files and how to install them on the French
+                    website linked <a href="{% url 'livrees' %}">here</a>.</p>
+            </div>
+        </div>
+    </div>
+    <div class="div5">
+        <div>
+            <div id="titre">
+                How to fly with us?
+            </div>
+            <div class="intro">
+                <p>There's nothing easier!
+                </p>
+                <p>Every week, a poll is made to vote for the club's weekly flight, and route ideas are given. You only
+                    need to join us on frequency or in voice chat on the French vACC discord.</p>
+                <p> Keep in mind that spontaneous flights happen daily between members, so why don't you give it a try?
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="div6">
+        <img src="{% static 'asset/FFC_join.png' %}" alt="Image de présentation 6">
+    </div>
+    <div class="div7">
+        <img src="{% static 'asset/PAF3.PNG' %}" alt="Image de présentation 7">
+    </div>
+    <div class="div8">
+        <div>
+            <div id="titre">
+                What about the future?
+            </div>
+            <div class="intro">
+                <p>The French Flying Club's long-term objective is to become an independent ATO (Approved Training
+                    Organisation) in France.
+                    As a matter of fact, to this day, both French ATOs are linked to a VA.</p>
+                <p>In the meantime, the club has developed a new activity: aerobatic formation flights. With the "Pains
+                    Acrobatiques
+                    Français", the club offers you an initiation to flying an aerobatic formation in the TB30, built by
+                    Socata, a French Air
+                    Force legendary aircraft. Feel free to come and say hi in our dedicated discord thread!</p>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Corps -->
+
+{% endblock %}

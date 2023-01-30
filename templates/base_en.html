@@ -33,19 +33,19 @@
     <header>
         <img id="img1" src="{% static 'asset/Flying_Club_vACC-Logo-500.png' %}" alt="logo" />
         <div class="nav_links">
-            <a href="{% url 'index' %}">Le Club</a>
-            <a href="{% url 'events' %}">Événements</a>
-            <a href="{% url 'livrees' %}">Nos Livrées</a>
-            <a href="{% url 'doc' %}">Documentation</a>
-            <a href="{% url 'voltige' %}">Pains Acrobatiques</a>
-            <a href="{% url 'contact' %}">Contact</a>
+            <a href="{% url 'en_index' %}">The club</a>
+            <a href="{% url 'en_events' %}">Events</a>
+            <a href="{% url 'en_livrees' %}">Our liveries</a>
+            <a href="{% url 'en_doc' %}">Documentation</a>
+            <a href="{% url 'en_voltige' %}">"Pains Acrobatiques"</a>
+            <a href="{% url 'en_contact' %}">Contact</a>
 
         </div>
 
         <div class="langue">
-            <p>English website : </p>
+            <p>Site français: </p>
             <div id="lang_img">
-                <a href="/en/"><img src="{% static 'asset/en.png' %}" alt="en" /></a>
+                <a href="{% url 'index' %}"><img src="{% static 'asset/fr.png' %}" alt="en" /></a>
             </div>
         </div>
     </header>
