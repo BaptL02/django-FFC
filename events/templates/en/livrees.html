@@ -1,0 +1,39 @@
+{% extends "base_en.html" %}
+
+{% block content %}
+{% load static %}
+<div class="row">
+
+    <div class="frame frame2 livrees">
+        <p>Microsoft Flight Simulator</p>
+        <img src="{% static 'asset/MFS2.png' %}" alt="MFS" width="50%" height="auto" />
+        <a href="{% url 'en_livrees_MSFS' %}" class="bouton-filtre livrees">Go !</a>
+    </div>
+
+    <div class="frame frame2 livrees">
+        <p>X-Plane</p>
+        <img src="{% static 'asset/xplane11.png' %}" alt="xplane" width="50%" height="auto" />
+        <a href="{% url 'en_livrees_XP' %}" class="bouton-filtre livrees">Go !</a>
+    </div>
+</div>
+
+<div class="frame">
+    <p>Liveries for our aerobatic aircraft (MSFS only) are available in the <a href="{% url 'en_voltige' %}">"Aerobatics"</a>section.
+    </p>
+</div>
+
+<div class="row">
+    <div class="frame frame2 livrees">
+        <p>VMR installation tutorial</p>
+        <a href="https://docs.google.com/document/d/10nxibBRj1BUivE220l7iAyJBlbuNORUlgvFwf9Gv6Xg/" class="bouton-filtre livrees">Go !</a>
+    </div>
+
+    <div class="frame frame2 livrees">
+        <p>VMR files links</p>
+        <a href="vmr_list" class="bouton-filtre livrees">Go !</a>
+    </div>
+
+</div>
+
+
+{% endblock %}

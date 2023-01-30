@@ -1,0 +1,30 @@
+{% extends "base_en.html" %}
+
+{% block content %}
+
+<div class="frame">
+    <h5>Operation of the club</h5>
+    {% for i in docs %}
+    {% if i.categorie == "FT" %}
+    <div class="frame_doc">
+        <a href="{{i.lien}}"> {{ i.titre }}</a>
+    </div>
+    {% endif %}
+    {% endfor %}
+</div>
+
+<div class="frame">
+    <h5>ATO</h5>
+    {% for i in docs %}
+    {% if i.categorie == "AT" %}
+    <div class="frame_doc">
+        <a href="{{i.lien}}"> {{ i.titre }}</a>
+    </div>
+    {% endif %}
+    {% endfor %}
+    <div class="frame_doc">
+        <a href="{% url 'en_formation_list' %}"> Formations</a>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends "base_en.html" %}
+
+{% block content %}
+{% load static %}
+<div class="frame">
+  <p style="padding: 1%;">Nous sommes prioritairement présents sur le discord French Flying Club ci-dessous.
+    <br>
+    Nous sommes également disponible sur le canal dédié French Flying Club sur le Discord de la French vACC<br>
+    Il est joinable directement depuis le site de la French vACC avec un compte VATSIM. <br>
+    Une adresse de contact est aussi disponible pour toutes demandes : <a
+      href="mailto:contact@frenchflyingclub.fr">Envoyez un email</a><br><br>
+  <div class="frame_doc">
+    <a href="{% url 'privacy_policy' %}"> Privacy
+      Policy </a>
+  </div>
+  </p>
+</div>
+
+<div class="row">
+  <div class="frame frame2 livrees">
+    <p>Nos réseaux sociaux !</p>
+    <div class="socializer a sr-32px sr-drop sr-opacity sr-icon-white sr-pad"><span class="sr-twitter"><a
+          href="https://twitter.com/flyinbaguettes" target="_blank" title="Twitter"><i
+            class="fab fa-twitter"></i></a></span><span class="sr-discord"><a href="https://discord.gg/4gM8Whwmgw"
+          target="_blank" title="Discord"><i class="fab fa-discord"></i></a></span><span class="sr-email"><a
+          href="mailto:contact@frenchflyingclub.fr" target="_blank" title="Email"><i
+            class="fa fa-envelope"></i></a></span></div>
+  </div>
+
+  <div class="frame frame2 livrees">
+    <p>Nos partenaires ! </p>
+    <a href="https://vatsim.net/"> <img src="{% static 'asset/Vatsim.jpg' %}" id="vatsim" alt="vatsim">
+    </a>
+  </div>
+
+</div>
+
+{% endblock %}
