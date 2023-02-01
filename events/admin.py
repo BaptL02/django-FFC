@@ -9,6 +9,8 @@ from events.models import formation
 from events.models import VMR
 from events.models import Sondage, ChoixSondage
 
+admin.site.site_header = 'French Flying Club administration'
+
 admin.site.register(Event)
 admin.site.register(Annonce)
 admin.site.register(Livree)
@@ -17,3 +19,4 @@ admin.site.register(formation)
 admin.site.register(VMR)
 admin.site.register(Sondage)
 admin.site.register(ChoixSondage)
+
