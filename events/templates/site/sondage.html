@@ -11,7 +11,7 @@
         <p>{{ sondage.titre }}</p>
         <h3>{{ sondage.description }}</h3>
         {% for choix in sondage.choixsondage_set.all %}
-            <input type="checkbox" name="choix" value="{{ choix.id }}"> {{ choix.choix }}<br>
+        <input type="checkbox" name="choix" value="{{ choix.id }}"> {{ choix.choix }}<br>
         {% endfor %}
         <input type="submit" class="button sondage" value="Valider">
     </form>
@@ -33,7 +33,9 @@
 {% endif %}
 
 {% empty %}
-<h4>Pas de sondages disponibles...</h4>
+<div class="frame">
+    <h4>Pas de sondages disponibles...</h4>
+</div>
 {% endfor %}
 
 
