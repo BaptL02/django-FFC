@@ -16,11 +16,10 @@ from events.views import voltige
 from events.views import formation_list
 from events.views import privacy_policy
 from events.views import vmr_list
-from events.views import sondage
-from events.views import vote
 from events.views import AIRBUS
 from events.views import BOEING
 from events.views import LEGER
+from events.views import HELICO
 
 #import ANGLAIS
 from events.views import en_index
@@ -35,6 +34,7 @@ from events.views import en_AIRBUS
 from events.views import en_BOEING
 from events.views import en_livrees_MSFS
 from events.views import en_LEGER
+from events.views import en_HELICO
 from events.views import en_formation_list
 
 urlpatterns = [
@@ -50,14 +50,13 @@ urlpatterns = [
     path('livrees/livrees_MSFS/', livrees_MSFS, name="livrees_MSFS"),
     path('livrees/livrees_MSFS/airbus/', AIRBUS, name="AIRBUS"),
     path('livrees/livrees_MSFS/boeing/', BOEING, name="BOEING"),
-    path('livrees/livrees_MSFS/leger/', LEGER, name="LEGER"),
+    path('livrees/livrees_MSFS/ag/', LEGER, name="LEGER"),
+    path('livrees/livrees_MSFS/helico/', HELICO, name="HELICO"),
     path('livrees/', livrees, name="livrees"),
     path('voltige/', voltige, name="voltige"),
     path('livrees_xp/', livrees_XP, name="livrees_XP"),
     path('contact/privacy_policy/', privacy_policy, name="privacy_policy"),
     path('livrees/vmr/', vmr_list, name="vmr_list" ),
-    path('sondage/', sondage, name='sondage'),
-    path('sondage/answered', vote, name='vote'),
 
     #Lien ANGLAIS
     path('en/', en_index, name="en_index"),
@@ -72,6 +71,6 @@ urlpatterns = [
     path('en/livrees/livrees_MSFS/', en_livrees_MSFS, name="en_livrees_MSFS"),
     path('en/livrees/livrees_MSFS/airbus/', en_AIRBUS, name="en_AIRBUS"),
     path('en/livrees/livrees_MSFS/boeing/', en_BOEING, name="en_BOEING"),
-    path('en/livrees/livrees_MSFS/leger/', en_LEGER, name="en_LEGER"),
-
+    path('en/livrees/livrees_MSFS/ga/', en_LEGER, name="en_ga"),
+    path('en/livrees/livrees_MSFS/helico/', en_HELICO, name="en_HELICO"),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
