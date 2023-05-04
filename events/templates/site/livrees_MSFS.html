@@ -1,6 +1,17 @@
 {% extends "base.html" %}
-
 {% block content %}
+
+<head>
+  <!-- TITLE -->
+  <title>French Flying Club - Livrées MSFS</title>
+  <!-- TITLE -->
+
+  <!-- GOOGLE TRACKERS -->
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-0ZMD04ER74"></script>
+      <script type="text/javascript" src="/js/gtag.js"></script> 
+  <!-- GOOGLE TRACKERS -->
+</head>
+
 {% load static %}
 
 <form method="GET" action="{% url 'livrees_MSFS' %}" class="search-form">
@@ -9,12 +20,13 @@
 </form>
 
 
-<button class="bouton-filtre" data-url="{% url 'AIRBUS' %}" onclick="location.href=this.dataset.url">Gamme
+<button class="bouton-filtre" data-url="{% url 'AIRBUS' %}" onclick="location.href=this.dataset.url">
   Airbus</button>
-<button class="bouton-filtre" data-url="{% url 'BOEING' %}" onclick="location.href=this.dataset.url">Gamme
+<button class="bouton-filtre" data-url="{% url 'BOEING' %}" onclick="location.href=this.dataset.url">
   Boeing</button>
 <button class="bouton-filtre" data-url="{% url 'LEGER' %}" onclick="location.href=this.dataset.url">Aviation
-  lègère</button><br>
+  générale</button>
+<button class="bouton-filtre" data-url="{% url 'HELICO' %}" onclick="location.href=this.dataset.url">Hélicoptères</button><br>
 <button class="bouton-filtre" data-url="{% url 'livrees_MSFS' %}" onclick="location.href=this.dataset.url">Effacer la
   recherche / les filtres</button>
 
@@ -29,7 +41,7 @@
       <img src="{{i.photo1.url}}" alt="{{i.immat}}" />
       <img src="{{i.photo2.url}}" alt="{{i.immat}}" />
     </div>
-    <a href="{{i.lien}}" class="bouton-filtre livrees">Télécharger</a>
+    <a href="{{i.fichier.url}}" class="bouton-filtre livrees">Télécharger</a>
   </div>
   {% endfor %}
 </div>

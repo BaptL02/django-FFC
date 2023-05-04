@@ -1,6 +1,17 @@
 {% extends "base_en.html" %}
-
 {% block content %}
+
+<head>
+  <!-- TITLE -->
+  <title>French Flying Club - Liveries MSFS</title>
+  <!-- TITLE -->
+
+  <!-- GOOGLE TRACKERS -->
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-0ZMD04ER74"></script>
+      <script type="text/javascript" src="/js/gtag.js"></script> 
+  <!-- GOOGLE TRACKERS -->
+</head>
+
 {% load static %}
 
 <form method="GET" action="{% url 'livrees_MSFS' %}" class="search-form">
@@ -8,15 +19,14 @@
   <input type="submit" value="Recherche" class="bouton-filtre">
 </form>
 
-
-<button class="bouton-filtre" data-url="{% url 'AIRBUS' %}" onclick="location.href=this.dataset.url">
+<button class="bouton-filtre" data-url="{% url 'en_AIRBUS' %}" onclick="location.href=this.dataset.url">
   Airbus</button>
-<button class="bouton-filtre" data-url="{% url 'BOEING' %}" onclick="location.href=this.dataset.url">
+<button class="bouton-filtre" data-url="{% url 'en_BOEING' %}" onclick="location.href=this.dataset.url">
   Boeing</button>
-<button class="bouton-filtre" data-url="{% url 'LEGER' %}" onclick="location.href=this.dataset.url">General aviation</button><br>
-<button class="bouton-filtre" data-url="{% url 'livrees_MSFS' %}" onclick="location.href=this.dataset.url">Delete the
+<button class="bouton-filtre" data-url="{% url 'en_ga' %}" onclick="location.href=this.dataset.url">General aviation</button>
+<button class="bouton-filtre" data-url="{% url 'en_HELICO' %}" onclick="location.href=this.dataset.url">Helicoptere</button><br>
+<button class="bouton-filtre" data-url="{% url 'en_livrees_MSFS' %}" onclick="location.href=this.dataset.url">Delete the
   search / filters</button>
-
 
 <div class="row">
   {% for i in livrees %}

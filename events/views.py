@@ -8,7 +8,6 @@ from events.models import Livree
 from events.models import doc
 from events.models import formation
 from events.models import VMR
-from events.models import Sondage, ChoixSondage
 
 # VIEWS FRANCAIS.
 
@@ -60,7 +59,7 @@ def formation_list(request):
     return render(request, 'site/formation.html', {'formations': formations})
 
 def livrees_MSFS(request):
-    livrees = Livree.objects.filter(simulateur = "MFS")
+    livrees = Livree.objects.filter(simulateur = "MFS").order_by('ordre')
     q = request.GET.get('q')
     if q:
         livrees = livrees.filter(
@@ -80,6 +79,10 @@ def BOEING(request):
 
 def LEGER(request):
     livrees = Livree.objects.filter(simulateur = "MFS" ).filter(Filtre = "LEG")
+    return render(request, 'site/livrees_MSFS.html', {'livrees': livrees})
+
+def HELICO(request):
+    livrees = Livree.objects.filter(simulateur = "MFS" ).filter(Filtre = "HEL")
     return render(request, 'site/livrees_MSFS.html', {'livrees': livrees})
 
 #views ANGLAIS
@@ -151,19 +154,7 @@ def en_LEGER(request):
     livrees = Livree.objects.filter(simulateur = "MFS" ).filter(Filtre = "LEG")
     return render(request, 'en/livrees_MSFS.html', {'livrees': livrees})
 
-#views GLOBAL
-
-def sondage(request):
-    sondage = Sondage.objects.all()
-    return render(request, 'site/sondage.html', {'sondages': sondage})
-
-def vote(request):
-    sondage = Sondage.objects.all()
-    choix_ids = request.POST.getlist('choix')
-    for choix_id in choix_ids:
-        choix = ChoixSondage.objects.get(pk=choix_id)
-        choix.votes += 1
-        choix.save()
-    return render(request, 'site/resultats.html', {'sondage': sondage})
-
+def en_HELICO(request):
+    livrees = Livree.objects.filter(simulateur = "MFS" ).filter(Filtre = "HEL")
+    return render(request, 'en/livrees_MSFS.html', {'livrees': livrees})
 

@@ -60,7 +60,8 @@ class Livree(models.Model):
     editeur = models.CharField(max_length=100)
     photo1 = models.ImageField(upload_to="dossier_image/")
     photo2 = models.ImageField(upload_to="dossier_image/")
-    lien = models.URLField()
+    fichier = models.FileField(upload_to="lien_livrees/")
+    ordre = models.IntegerField()
 
     Xplane = 'XP'
     MFS = 'MFS'
@@ -80,10 +81,12 @@ class Livree(models.Model):
     AIRBUS = 'AIB'
     BOEING = 'BOE'
     LEGER = 'LEG'
+    HELICO = 'HEL'
     Filtrage = [
         (AIRBUS, 'AIRBUS'),
         (BOEING, 'BOEING'),
         (LEGER, 'LEGER'),
+        (HELICO, 'HEL'),
     ]
 
     Filtre = models.CharField(
@@ -92,8 +95,11 @@ class Livree(models.Model):
         default=AIRBUS,
     )
 
+    class Meta:
+        ordering = ['ordre']
+
     def __str__(self):
-        return f" {self.simulateur} - {self.avion} ({self.editeur})"
+        return f" {self.ordre} / {self.simulateur} - {self.avion} ({self.editeur})"
 
 """
 Doc
@@ -147,44 +153,3 @@ class VMR(models.Model):
 
     def __str__(self):
         return f"{self.titre}"
-
-"""
-Sondage
-- titre
-- description
-"""
-
-class Sondage(models.Model):
-    titre = models.CharField(max_length=255)
-    description = models.TextField(max_length=2000, blank=True)
-    QCM = 'QCM'
-    Libre = 'CL'
-    Binaire = "BI"
-    typeof = [
-        (QCM, 'QCM'),
-        (Libre, 'Champ libre'),
-        (Binaire, 'Binaire'),
-    ]
-    type = models.CharField(
-        max_length=3,
-        choices=typeof,
-        default=QCM,
-    )
-
-    def __str__(self):
-        return f"{self.titre} ({self.type})"
-
-"""
-Sondage
-- sondage
-- choix
-- votes
-"""
-
-class ChoixSondage(models.Model):
-    sondage = models.ForeignKey(Sondage, on_delete=models.CASCADE)
-    choix = models.CharField(max_length=255)
-    votes = models.IntegerField(default=0)
-
-    def __str__(self):
-        return f"({self.sondage}) {self.choix} -- Vote : {self.votes} "
