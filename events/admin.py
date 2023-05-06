@@ -16,4 +16,3 @@ admin.site.register(Livree)
 admin.site.register(doc)
 admin.site.register(formation)
 admin.site.register(VMR)
-
