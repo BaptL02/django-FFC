@@ -34,9 +34,9 @@ Annonce
 """
 
 class Annonce(models.Model):
+    title = models.CharField(max_length=255)
+    author = models.CharField(max_length=100)
     content = models.TextField(max_length=5000)
-    title = models.TextField(max_length=1000)
-    author = models.TextField(max_length=200)
     annonce_id = models.IntegerField()
 
     def __str__(self):
@@ -78,21 +78,63 @@ class Livree(models.Model):
         default=MFS,
     )
 
-    AIRBUS = 'AIB'
-    BOEING = 'BOE'
-    LEGER = 'LEG'
-    HELICO = 'HEL'
-    Filtrage = [
+    #FILTRAGE
+    
+    #filtre1
+
+    AIRBUS = 'AIRBUS'
+    BOEING = 'BOEING'
+    CESSNA = 'CESSNA'
+
+    Filtrage1 = [
         (AIRBUS, 'AIRBUS'),
         (BOEING, 'BOEING'),
-        (LEGER, 'LEGER'),
-        (HELICO, 'HEL'),
+        (CESSNA, 'CESSNA'),
     ]
 
-    Filtre = models.CharField(
-        max_length=3,
-        choices=Filtrage,
+    Filtre_constructeur = models.CharField(
+        max_length=6,
+        choices=Filtrage1,
         default=AIRBUS,
+        blank=True
+    )
+
+    #filtre2
+    
+    CLASSIQUE = 'CLASSIQUE'
+    SPECIALE = 'SPECIALE'
+
+    Filtrage2 = [
+        (CLASSIQUE, 'CLASSIQUE'),
+        (SPECIALE, 'SPECIALE'),
+    ]
+
+    Filtre_livree = models.CharField(
+        max_length=9,
+        choices=Filtrage2,
+        default=CLASSIQUE,
+        blank=True
+    )
+
+    #filtre3
+    
+    LINER = 'LINER'
+    AFFAIRE = 'AFFAIRE'
+    GENERAL = 'GENERAL'
+    HELICOPTERE = 'HELICO'
+
+    Filtrage3 = [
+        (LINER, 'LINER'),
+        (AFFAIRE, 'AFFAIRE'),
+        (GENERAL, 'GENERAL'),
+        (HELICOPTERE, 'HELICO'),
+    ]
+
+    Filtre_type = models.CharField(
+        max_length=7,
+        choices=Filtrage3,
+        default=LINER,
+        blank=True
     )
 
     class Meta:
@@ -149,7 +191,21 @@ VMR
 
 class VMR(models.Model):
     titre = models.CharField(max_length=200)
-    lien = models.URLField()
+    fichier = models.FileField(upload_to="lien_VMR/")
 
     def __str__(self):
         return f"{self.titre}"
+
+"""
+alert
+- Contenu
+- Lien
+"""
+class ALERT(models.Model):
+    contenu = models.CharField(max_length=124)
+    hyperlink_msg = models.CharField(max_length=30, blank=True)
+    lien = models.URLField(blank=True)
+    
+
+    def __str__(self):
+        return f"{self.contenu}"

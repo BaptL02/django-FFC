@@ -8,6 +8,7 @@ from events.models import Livree
 from events.models import doc
 from events.models import formation
 from events.models import VMR
+from events.models import ALERT
 
 # VIEWS FRANCAIS.
 
@@ -22,7 +23,12 @@ def events(request):
 
 def index(request):
     annonce = Annonce.objects.order_by('-id')
-    return render(request, "site/index.html", context={"annonces" : annonce})
+    alerts = ALERT.objects.all()
+    return render(request, "site/index.html",     
+    context = {
+        "annonces": annonce,
+        "alerts": alerts,
+    })
 
 def docs(request):
     docs = doc.objects.all()
@@ -59,31 +65,47 @@ def formation_list(request):
     return render(request, 'site/formation.html', {'formations': formations})
 
 def livrees_MSFS(request):
-    livrees = Livree.objects.filter(simulateur = "MFS").order_by('ordre')
-    q = request.GET.get('q')
-    if q:
-        livrees = livrees.filter(
-            Q(avion__icontains=q) |
-            Q(immat__icontains=q) |
-            Q(editeur__icontains=q)
-        )
-    return render(request, 'site/livrees_MSFS.html', {'livrees': livrees})
+    livrees = Livree.objects.filter(simulateur="MFS")
 
-def AIRBUS(request):
-    livrees = Livree.objects.filter(simulateur = "MFS" ).filter(Filtre = "AIB")
-    return render(request, 'site/livrees_MSFS.html', {'livrees': livrees})
+    if request.method == 'GET':
+        q = request.GET.get('q')
+        if q:
+            livrees = livrees.filter(
+                Q(avion__icontains=q) |
+                Q(immat__icontains=q) |
+                Q(editeur__icontains=q)
+            )
+        context = {
+            'livrees': livrees
+        }
+        return render(request, 'site/livrees_MSFS.html', context)
 
-def BOEING(request):
-    livrees = Livree.objects.filter(simulateur = "MFS" ).filter(Filtre = "BOE")
-    return render(request, 'site/livrees_MSFS.html', {'livrees': livrees})
+    elif request.method == 'POST':
+        column1 = request.POST.getlist('Filtre_constructeur')
+        column2 = request.POST.getlist('Filtre_livree')
+        column3 = request.POST.getlist('Filtre_type')
 
-def LEGER(request):
-    livrees = Livree.objects.filter(simulateur = "MFS" ).filter(Filtre = "LEG")
-    return render(request, 'site/livrees_MSFS.html', {'livrees': livrees})
+        query = Q()
+        filters_applied = False
 
-def HELICO(request):
-    livrees = Livree.objects.filter(simulateur = "MFS" ).filter(Filtre = "HEL")
-    return render(request, 'site/livrees_MSFS.html', {'livrees': livrees})
+        if column1:
+            query &= Q(Filtre_constructeur__in=column1)
+            filters_applied = True
+        if column2:
+            query &= Q(Filtre_livree__in=column2)
+            filters_applied = True
+        if column3:
+            query &= Q(Filtre_type__in=column3)
+            filters_applied = True
+
+        if filters_applied:
+            livrees = livrees.filter(query)
+
+    context = {
+        'livrees': livrees
+    }
+    return render(request, 'site/livrees_MSFS.html', context)
+
 
 #views ANGLAIS
 
@@ -132,29 +154,43 @@ def en_formation_list(request):
     return render(request, 'en/formation.html', {'formations': formations})
 
 def en_livrees_MSFS(request):
-    livrees = Livree.objects.filter(simulateur = "MFS")
-    q = request.GET.get('q')
-    if q:
-        livrees = livrees.filter(
-            Q(avion__icontains=q) |
-            Q(immat__icontains=q) |
-            Q(editeur__icontains=q)
-        )
-    return render(request, 'en/livrees_MSFS.html', {'livrees': livrees})
+    livrees = Livree.objects.filter(simulateur="MFS")
 
-def en_AIRBUS(request):
-    livrees = Livree.objects.filter(simulateur = "MFS" ).filter(Filtre = "AIB")
-    return render(request, 'en/livrees_MSFS.html', {'livrees': livrees})
+    if request.method == 'GET':
+        q = request.GET.get('q')
+        if q:
+            livrees = livrees.filter(
+                Q(avion__icontains=q) |
+                Q(immat__icontains=q) |
+                Q(editeur__icontains=q)
+            )
+        context = {
+            'livrees': livrees
+        }
+        return render(request, 'en/livrees_MSFS.html', context)
 
-def en_BOEING(request):
-    livrees = Livree.objects.filter(simulateur = "MFS" ).filter(Filtre = "BOE")
-    return render(request, 'en/livrees_MSFS.html', {'livrees': livrees})
+    elif request.method == 'POST':
+        column1 = request.POST.getlist('Filtre_constructeur')
+        column2 = request.POST.getlist('Filtre_livree')
+        column3 = request.POST.getlist('Filtre_type')
 
-def en_LEGER(request):
-    livrees = Livree.objects.filter(simulateur = "MFS" ).filter(Filtre = "LEG")
-    return render(request, 'en/livrees_MSFS.html', {'livrees': livrees})
+        query = Q()
+        filters_applied = False
 
-def en_HELICO(request):
-    livrees = Livree.objects.filter(simulateur = "MFS" ).filter(Filtre = "HEL")
-    return render(request, 'en/livrees_MSFS.html', {'livrees': livrees})
+        if column1:
+            query &= Q(Filtre_constructeur__in=column1)
+            filters_applied = True
+        if column2:
+            query &= Q(Filtre_livree__in=column2)
+            filters_applied = True
+        if column3:
+            query &= Q(Filtre_type__in=column3)
+            filters_applied = True
 
+        if filters_applied:
+            livrees = livrees.filter(query)
+
+    context = {
+        'livrees': livrees
+    }
+    return render(request, 'en/livrees_MSFS.html', context)
