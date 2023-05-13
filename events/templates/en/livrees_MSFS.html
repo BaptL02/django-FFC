@@ -10,23 +10,76 @@
       <script async src="https://www.googletagmanager.com/gtag/js?id=G-0ZMD04ER74"></script>
       <script type="text/javascript" src="/js/gtag.js"></script> 
   <!-- GOOGLE TRACKERS -->
+
 </head>
 
 {% load static %}
 
 <form method="GET" action="{% url 'livrees_MSFS' %}" class="search-form">
-  <input type="text" name="q" placeholder="Search by title, registration, provider">
+  <input type="text" name="q" placeholder="Recherche par titre, immatriculation, éditeur">
   <input type="submit" value="Recherche" class="bouton-filtre">
+  <input type="submit" value="Annuler" data-url="{% url 'livrees_MSFS' %}" onclick="location.href=this.dataset.url">
 </form>
 
-<button class="bouton-filtre" data-url="{% url 'en_AIRBUS' %}" onclick="location.href=this.dataset.url">
-  Airbus</button>
-<button class="bouton-filtre" data-url="{% url 'en_BOEING' %}" onclick="location.href=this.dataset.url">
-  Boeing</button>
-<button class="bouton-filtre" data-url="{% url 'en_ga' %}" onclick="location.href=this.dataset.url">General aviation</button>
-<button class="bouton-filtre" data-url="{% url 'en_HELICO' %}" onclick="location.href=this.dataset.url">Helicoptere</button><br>
-<button class="bouton-filtre" data-url="{% url 'en_livrees_MSFS' %}" onclick="location.href=this.dataset.url">Delete the
-  search / filters</button>
+<form method="post" class="search-form filtre">
+  {% csrf_token %}
+  <nav>
+    <ul>
+      <li class="deroulant"><a href="#">Manufacturer &ensp;</a>
+        <ul class="sous">
+          <div id="filtre">
+          <li><div><input type="checkbox" name="Filtre_constructeur" value="AIRBUS" style="margin-left: 0px;"> Airbus</div></li>
+          <li><div><input type="checkbox" name="Filtre_constructeur" value="BOEING"> Boeing</div></li>
+          <li><div><input type="checkbox" name="Filtre_constructeur" value="CESSNA"> Cessna</div></li>
+          </div>
+        </ul>
+      </li>
+      <li class="deroulant"><a href="#">Livery &ensp;</a>
+        <ul class="sous">
+          <div id="filtre">
+          <li><div><input type="checkbox" name="Filtre_livree" value="CLASSIQUE"> Classic</div></li>
+          <li><div><input type="checkbox" name="Filtre_livree" value="SPECIALE"> Special</div></li>
+        </div>
+        </ul>
+      </li>
+      <li class="deroulant"><a href="#">Type &ensp;</a>
+        <ul class="sous">
+        <div id="filtre">
+          <li><div><input type="checkbox" name="Filtre_type" value="LINER"> Liner</div></li>
+          <li><div><input type="checkbox" name="Filtre_type" value="AFFAIRE"> Jet</div></li>
+          <li><div><input type="checkbox" name="Filtre_type" value="GENERAL"> General</div></li>
+          <li><div><input type="checkbox" name="Filtre_type" value="HELICO"> Helicoptere</div></li>
+        </div>
+        </ul>
+      </li>
+    </ul>
+  </nav> 
+  <input type="submit" value="Filtrer" class="bouton-filtre">
+</form>
+
+<script>
+  const listItems = document.querySelectorAll('#filtre li');
+
+  listItems.forEach((listItem) => {
+    const checkbox = listItem.querySelector('input[type="checkbox"]');
+    const label = listItem.querySelector('label');
+
+    checkbox.style.visibility = 'hidden';
+
+    listItem.addEventListener('click', function() {
+      checkbox.click();
+    });
+
+    checkbox.addEventListener('change', function() {
+      if (this.checked) {
+        listItem.style.backgroundColor = 'lightskyblue';
+        listItem.style.borderRadius = '10px'
+      } else {
+        listItem.style.backgroundColor = '';
+      }
+    });
+  });
+</script>
 
 <div class="row">
   {% for i in livrees %}
@@ -40,9 +93,12 @@
     </div>
     <a href="{{i.lien}}" class="bouton-filtre livrees">Download</a>
   </div>
+  {% empty %}
+  <div class="frame">
+    <h4>No liveries match your search or the applied filter.<h4>
+  </div>
   {% endfor %}
 </div>
-
 
 
 {% endblock %}
