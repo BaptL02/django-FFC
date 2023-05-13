@@ -16,10 +16,6 @@ from events.views import voltige
 from events.views import formation_list
 from events.views import privacy_policy
 from events.views import vmr_list
-from events.views import AIRBUS
-from events.views import BOEING
-from events.views import LEGER
-from events.views import HELICO
 
 #import ANGLAIS
 from events.views import en_index
@@ -30,11 +26,7 @@ from events.views import en_livrees_XP
 from events.views import en_vmr_list
 from events.views import en_voltige
 from events.views import en_events
-from events.views import en_AIRBUS
-from events.views import en_BOEING
 from events.views import en_livrees_MSFS
-from events.views import en_LEGER
-from events.views import en_HELICO
 from events.views import en_formation_list
 
 urlpatterns = [
@@ -42,16 +34,12 @@ urlpatterns = [
     #Lien FRANCAIS
     path('admin/', admin.site.urls),
     path('', index, name="index"),
-    path('acceuil/', index, name="index"),
+    path('index/', index, name="index"),
     path('events/', events, name="events"),
     path('documentation/', docs, name="doc"),
     path('documentation/formation/', formation_list, name="formation_list"),
     path('contact/', contact, name="contact"),
     path('livrees/livrees_MSFS/', livrees_MSFS, name="livrees_MSFS"),
-    path('livrees/livrees_MSFS/airbus/', AIRBUS, name="AIRBUS"),
-    path('livrees/livrees_MSFS/boeing/', BOEING, name="BOEING"),
-    path('livrees/livrees_MSFS/ag/', LEGER, name="LEGER"),
-    path('livrees/livrees_MSFS/helico/', HELICO, name="HELICO"),
     path('livrees/', livrees, name="livrees"),
     path('voltige/', voltige, name="voltige"),
     path('livrees_xp/', livrees_XP, name="livrees_XP"),
@@ -69,8 +57,4 @@ urlpatterns = [
     path('en/events', en_events, name="en_events"),
     path('en/documentation/formation/', en_formation_list, name="en_formation_list"),
     path('en/livrees/livrees_MSFS/', en_livrees_MSFS, name="en_livrees_MSFS"),
-    path('en/livrees/livrees_MSFS/airbus/', en_AIRBUS, name="en_AIRBUS"),
-    path('en/livrees/livrees_MSFS/boeing/', en_BOEING, name="en_BOEING"),
-    path('en/livrees/livrees_MSFS/ga/', en_LEGER, name="en_ga"),
-    path('en/livrees/livrees_MSFS/helico/', en_HELICO, name="en_HELICO"),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
