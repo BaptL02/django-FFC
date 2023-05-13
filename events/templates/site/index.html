@@ -15,11 +15,18 @@
 {% load static %}
 
 <!-- ALERT -->
+
+{% for k in alerts %}
+
 <div class="alert">
-    <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
-    <strong>Nous sommes présents sur discord ! Rendez vous sur la page</strong> <a href="{% url 'contact' %}"> contact </a>
+    <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+    <strong>{{ k.contenu | linebreaks }}</strong><a href="{{ k.lien.url }}">{{ k.hyperlink_msg }}</a>
 </div>
+
+{% endfor %}
+
 <!-- ALERT -->
+
 
 <!-- BIENVENUE -->
 <div class="welcome">
@@ -32,7 +39,7 @@
             <p>{{ i.content |linebreaks }}</p>
         </div>
         {%empty%}
-        <h5>Aucunes annonces récentes ...</h5>
+        <h5>Aucune annonce récente ...</h5>
         {% endfor %}
     </div>
 </div>

@@ -22,15 +22,14 @@
 <button class="bouton-effacer" data-url="{% url 'formation_list' %}" onclick="location.href=this.dataset.url">Effacer la recherche</button>
 
 
-
 <div class="frame">
     <div class="text_doc formation">
         <p>Formations</p>
     </div>
     {% for i in formations %}
-    <a href="youtube.com"><img src="{{ i.image.url }}" alt="image formation {{ i.titre }}" id="minia_formation"></a>
+    <a href="{{ i.lien }}"><img src="{{ i.image.url }}" alt="image formation {{ i.titre }}" id="minia_formation"></a>
     {% empty %}
-    <h4>Pas de formations publiées...</h4>
+    <h4>Aucune formation publiée...</h4>
     {% endfor %}
 </div>
 
