@@ -1,5 +1,6 @@
 {% extends "base_en.html" %}
 {% block content %}
+{% load static %}
 
 <head>
   <!-- TITLE -->
@@ -11,17 +12,24 @@
       <script type="text/javascript" src="/js/gtag.js"></script> 
   <!-- GOOGLE TRACKERS -->
 
+  <!-- Script gestion du filtrage-->
+  <script src="{% static 'js/filtrage.js' %}"></script>
+  <!-- Script gestion du filtrage-->
+
+  <!-- Script gestion du click-->
+  <script src="{% static 'js/en_onclick.js' %}"></script>
+  <!-- Script gestion du click-->
+
 </head>
 
-{% load static %}
 
-<form method="GET" action="{% url 'livrees_MSFS' %}" class="search-form">
-  <input type="text" name="q" placeholder="Recherche par titre, immatriculation, éditeur">
-  <input type="submit" value="Recherche" class="bouton-filtre">
-  <input type="submit" value="Annuler" data-url="{% url 'livrees_MSFS' %}" onclick="location.href=this.dataset.url">
+<form method="GET" action="{% url 'en_livrees_MSFS' %}" class="search-form">
+  <input type="text" name="q" placeholder="Search by title, registration or editor">
+  <input type="submit" value="Search" class="bouton-filtre">
+  <input type="submit" value="Cancel" data-url="{% url 'en_livrees_MSFS' %}" onclick="location.href=this.dataset.url">
 </form>
 
-<form method="post" class="search-form filtre">
+<form method="GET" class="search-form filtre">
   <nav>
     <ul>
       <li class="deroulant"><a href="#">Manufacturer &ensp;</a>
@@ -53,32 +61,8 @@
       </li>
     </ul>
   </nav> 
-  <input type="submit" value="Filtrer" class="bouton-filtre">
+  <input type="submit" value="Filter" class="bouton-filtre">
 </form>
-
-<script>
-  const listItems = document.querySelectorAll('#filtre li');
-
-  listItems.forEach((listItem) => {
-    const checkbox = listItem.querySelector('input[type="checkbox"]');
-    const label = listItem.querySelector('label');
-
-    checkbox.style.visibility = 'hidden';
-
-    listItem.addEventListener('click', function() {
-      checkbox.click();
-    });
-
-    checkbox.addEventListener('change', function() {
-      if (this.checked) {
-        listItem.style.backgroundColor = 'lightskyblue';
-        listItem.style.borderRadius = '10px'
-      } else {
-        listItem.style.backgroundColor = '';
-      }
-    });
-  });
-</script>
 
 <div class="row">
   {% for i in livrees %}
