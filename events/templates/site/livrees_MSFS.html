@@ -1,6 +1,8 @@
 {% extends "base.html" %}
 {% block content %}
 
+{% load static %}
+
 <head>
   <!-- TITLE -->
   <title>French Flying Club - Livrées MSFS</title>
@@ -11,9 +13,15 @@
       <script type="text/javascript" src="/js/gtag.js"></script> 
   <!-- GOOGLE TRACKERS -->
 
-</head>
+  <!-- Script gestion du filtrage-->
+  <script src="{% static 'js/filtrage.js' %}"></script>
+  <!-- Script gestion du filtrage-->
 
-{% load static %}
+    <!-- Script gestion du click-->
+    <script src="{% static 'js/onclick.js' %}"></script>
+    <!-- Script gestion du click-->
+
+</head>
 
 <form method="GET" action="{% url 'livrees_MSFS' %}" class="search-form">
   <input type="text" name="q" placeholder="Recherche par titre, immatriculation, éditeur">
@@ -21,13 +29,13 @@
   <input type="submit" value="Annuler" data-url="{% url 'livrees_MSFS' %}" onclick="location.href=this.dataset.url">
 </form>
 
-<form method="post" class="search-form filtre">
+<form method="GET" class="search-form filtre">
   <nav>
     <ul>
       <li class="deroulant"><a href="#">Constructeur &ensp;</a>
         <ul class="sous">
           <div id="filtre">
-          <li><div><input type="checkbox" name="Filtre_constructeur" value="AIRBUS" style="margin-left: 0px;"> Airbus</div></li>
+          <li><div><input type="checkbox" name="Filtre_constructeur" value="AIRBUS"> Airbus</div></li>
           <li><div><input type="checkbox" name="Filtre_constructeur" value="BOEING"> Boeing</div></li>
           <li><div><input type="checkbox" name="Filtre_constructeur" value="CESSNA"> Cessna</div></li>
           </div>
@@ -56,30 +64,6 @@
   <input type="submit" value="Filtrer" class="bouton-filtre">
 </form>
 
-<script>
-  const listItems = document.querySelectorAll('#filtre li');
-
-  listItems.forEach((listItem) => {
-    const checkbox = listItem.querySelector('input[type="checkbox"]');
-    const label = listItem.querySelector('label');
-
-    checkbox.style.visibility = 'hidden';
-
-    listItem.addEventListener('click', function() {
-      checkbox.click();
-    });
-
-    checkbox.addEventListener('change', function() {
-      if (this.checked) {
-        listItem.style.backgroundColor = 'lightskyblue';
-        listItem.style.borderRadius = '10px'
-      } else {
-        listItem.style.backgroundColor = '';
-      }
-    });
-  });
-</script>
-
 <div class="row">
   {% for i in livrees %}
   <div class="frame frame2 livrees">
@@ -98,7 +82,5 @@
   </div>
   {% endfor %}
 </div>
-
-
 
 {% endblock %}
