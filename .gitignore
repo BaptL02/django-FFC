@@ -2,4 +2,4 @@ __pycache__
 db.sqlite3  
 /static  
 /media
-/projet_site/settings.py
+/projet_site/settings.dist.py
