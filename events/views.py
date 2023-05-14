@@ -66,46 +66,37 @@ def formation_list(request):
 
 def livrees_MSFS(request):
     livrees = Livree.objects.filter(simulateur="MFS")
+    q = request.GET.get('q')
+    if q:
+        livrees = livrees.filter(
+            Q(avion__icontains=q) |
+            Q(immat__icontains=q) |
+            Q(editeur__icontains=q)
+        )
+    column1 = request.GET.getlist('Filtre_constructeur')
+    column2 = request.GET.getlist('Filtre_livree')
+    column3 = request.GET.getlist('Filtre_type')
 
-    if request.method == 'GET':
-        q = request.GET.get('q')
-        if q:
-            livrees = livrees.filter(
-                Q(avion__icontains=q) |
-                Q(immat__icontains=q) |
-                Q(editeur__icontains=q)
-            )
-        context = {
-            'livrees': livrees
-        }
-        return render(request, 'site/livrees_MSFS.html', context)
+    query = Q()
+    filters_applied = False
 
-    elif request.method == 'POST':
-        column1 = request.POST.getlist('Filtre_constructeur')
-        column2 = request.POST.getlist('Filtre_livree')
-        column3 = request.POST.getlist('Filtre_type')
+    if column1:
+        query &= Q(Filtre_constructeur__in=column1)
+        filters_applied = True
+    if column2:
+        query &= Q(Filtre_livree__in=column2)
+        filters_applied = True
+    if column3:
+        query &= Q(Filtre_type__in=column3)
+        filters_applied = True
 
-        query = Q()
-        filters_applied = False
-
-        if column1:
-            query &= Q(Filtre_constructeur__in=column1)
-            filters_applied = True
-        if column2:
-            query &= Q(Filtre_livree__in=column2)
-            filters_applied = True
-        if column3:
-            query &= Q(Filtre_type__in=column3)
-            filters_applied = True
-
-        if filters_applied:
-            livrees = livrees.filter(query)
+    if filters_applied:
+        livrees = livrees.filter(query)
 
     context = {
         'livrees': livrees
     }
     return render(request, 'site/livrees_MSFS.html', context)
-
 
 #views ANGLAIS
 
@@ -155,40 +146,32 @@ def en_formation_list(request):
 
 def en_livrees_MSFS(request):
     livrees = Livree.objects.filter(simulateur="MFS")
+    q = request.GET.get('q')
+    if q:
+        livrees = livrees.filter(
+            Q(avion__icontains=q) |
+            Q(immat__icontains=q) |
+            Q(editeur__icontains=q)
+        )
+    column1 = request.GET.getlist('Filtre_constructeur')
+    column2 = request.GET.getlist('Filtre_livree')
+    column3 = request.GET.getlist('Filtre_type')
 
-    if request.method == 'GET':
-        q = request.GET.get('q')
-        if q:
-            livrees = livrees.filter(
-                Q(avion__icontains=q) |
-                Q(immat__icontains=q) |
-                Q(editeur__icontains=q)
-            )
-        context = {
-            'livrees': livrees
-        }
-        return render(request, 'en/livrees_MSFS.html', context)
+    query = Q()
+    filters_applied = False
 
-    elif request.method == 'POST':
-        column1 = request.POST.getlist('Filtre_constructeur')
-        column2 = request.POST.getlist('Filtre_livree')
-        column3 = request.POST.getlist('Filtre_type')
+    if column1:
+        query &= Q(Filtre_constructeur__in=column1)
+        filters_applied = True
+    if column2:
+        query &= Q(Filtre_livree__in=column2)
+        filters_applied = True
+    if column3:
+        query &= Q(Filtre_type__in=column3)
+        filters_applied = True
 
-        query = Q()
-        filters_applied = False
-
-        if column1:
-            query &= Q(Filtre_constructeur__in=column1)
-            filters_applied = True
-        if column2:
-            query &= Q(Filtre_livree__in=column2)
-            filters_applied = True
-        if column3:
-            query &= Q(Filtre_type__in=column3)
-            filters_applied = True
-
-        if filters_applied:
-            livrees = livrees.filter(query)
+    if filters_applied:
+        livrees = livrees.filter(query)
 
     context = {
         'livrees': livrees
