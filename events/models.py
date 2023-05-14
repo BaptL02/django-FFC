@@ -15,14 +15,13 @@ class Event(models.Model):
     date_debut = models.DateTimeField()
     date_fin = models.DateTimeField()
     event_id = models.IntegerField()
-    image = models.URLField()
+    image = models.URLField(blank=True)
     def __str__(self):
         return f"{self.title} ({self.date_debut})"
+    
     def format_date_debut(self):
-        locale.setlocale(locale.LC_TIME, 'fr_FR')
         return self.date_debut.strftime("%A %d %B à %H%M")
     def format_date_fin(self):
-        locale.setlocale(locale.LC_TIME, 'fr_FR')
         return self.date_fin.strftime("%A %d %B à %H%M")
 
 """
@@ -205,7 +204,6 @@ class ALERT(models.Model):
     contenu = models.CharField(max_length=124)
     hyperlink_msg = models.CharField(max_length=30, blank=True)
     lien = models.URLField(blank=True)
-    
 
     def __str__(self):
         return f"{self.contenu}"

@@ -14,8 +14,8 @@ from events.models import ALERT
 
 def events(request):
     current_date = datetime.now().date()
-    upcoming_events = Event.objects.filter(date_debut__gte=current_date)
-    past_events = Event.objects.filter(date_fin__lt=current_date)
+    upcoming_events = Event.objects.filter(date_debut__gte = current_date)
+    past_events = Event.objects.filter(date_fin__lt = current_date)
     return render(request, "site/events.html", context={
         "upcoming_events": upcoming_events,
         "past_events": past_events
