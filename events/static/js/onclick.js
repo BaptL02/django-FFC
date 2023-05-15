@@ -3,8 +3,8 @@ $(document).ready(function() {
         $.ajax({
             url: "{% url 'livrees_MSFS' %}?filtre=true",
             type: "GET",
-            success: function(response) {
-              }
+            success: 
+                console.info("Requete AJAX ok")
           });
       });
   });
