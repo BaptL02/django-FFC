@@ -2,25 +2,6 @@
 {% block content %}
 {% load static %}
 
-<head>
-  <!-- TITLE -->
-  <title>French Flying Club - Liveries MSFS</title>
-  <!-- TITLE -->
-
-  <!-- JQUERY -->
-  <script type="application/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <!-- JQUERY -->
-
-  <!-- Script gestion du filtrage-->
-  <script type="application/javascript" src="{% static 'js/filtrage.js' %}"></script>
-  <!-- Script gestion du filtrage-->
-
-  <!-- Script gestion du click-->
-  <script type="application/javascript" src="{% static 'js/onclick.js' %}"></script>
-  <!-- Script gestion du click-->
-</head>
-
-
 <form method="GET" action="{% url 'en_livrees_MSFS' %}" class="search-form">
   <input type="text" name="q" placeholder="Search by title, registration or editor">
   <input type="submit" value="Search" class="bouton-filtre">

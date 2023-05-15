@@ -2,12 +2,6 @@
 {% block content %}
 {% load static %}
 
-<head>
-    <!-- TITLE -->
-    <title>French Flying Club - Formations</title>
-    <!-- TITLE -->
-</head>
-
 <form method="GET" action="{% url 'formation_list' %}" class="search-form">
     <input type="text" name="q" placeholder="Search by title">
     <input type="submit" value="Recherche">
