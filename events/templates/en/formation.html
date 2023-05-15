@@ -1,5 +1,6 @@
 {% extends "base_en.html" %}
 {% block content %}
+{% load static %}
 
 <head>
     <!-- TITLE -->
@@ -11,8 +12,6 @@
     <script type="application/javascript" src="{% static 'js/gtag.js' %}"></script> 
     <!-- GOOGLE TRACKERS -->
 </head>
-
-{% load static %}
 
 <form method="GET" action="{% url 'formation_list' %}" class="search-form">
     <input type="text" name="q" placeholder="Search by title">

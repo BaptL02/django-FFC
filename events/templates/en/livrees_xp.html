@@ -1,5 +1,6 @@
 {% extends "base_en.html" %}
 {% block content %}
+{% load static %}
 
 <head>
   <!-- TITLE -->
@@ -11,8 +12,6 @@
   <script type="application/javascript" src="{% static 'js/gtag.js' %}"></script> 
   <!-- GOOGLE TRACKERS -->
 </head>
-
-{% load static %}
 
 <div class="row">
   {% for i in livrees %}
