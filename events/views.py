@@ -13,13 +13,14 @@ from events.models import ALERT
 # VIEWS FRANCAIS.
 
 def events(request):
-    current_date = datetime.now().date()
-    upcoming_events = Event.objects.filter(date_debut__gte = current_date)
-    past_events = Event.objects.filter(date_fin__lt = current_date)
+    current_datetime = datetime.utcnow()
+    upcoming_events = Event.objects.filter(Q(date_debut__gt=current_datetime) | Q(date_fin__gt=current_datetime, date_debut__lte=current_datetime)).order_by('date_debut')
+    past_events = Event.objects.filter(date_fin__lt=current_datetime).order_by('-date_debut')
     return render(request, "site/events.html", context={
         "upcoming_events": upcoming_events,
         "past_events": past_events
     })
+
 
 def index(request):
     annonce = Annonce.objects.order_by('-id')
