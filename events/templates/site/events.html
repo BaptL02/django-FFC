@@ -13,7 +13,7 @@
         {% for event in upcoming_events %}
         <div class="announcement">
             <h2>{{event.title}}</h2>
-            <h5>Du {{event.format_date_debut}}z au {{event.format_date_fin}}z</h5>
+            <h5>From {{event.format_date_debut}}z to {{event.format_date_fin}}z</h5>
             <img src="{{event.image}}">
             <p>{{event.description |linebreaks }}</p>
         </div>
@@ -29,7 +29,7 @@
         {% for event in past_events %}
         <div class="announcement">
             <h2>{{event.title}}</h2>
-            <h5>Du {{event.format_date_debut}}z au {{event.format_date_fin}}z</h5>
+            <h5>From {{event.format_date_debut}}z to {{event.format_date_fin}}z</h5>
             <img src="{{event.image}}">
             <p>{{event.description |linebreaks}}</p>
         </div>
