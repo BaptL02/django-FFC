@@ -29,6 +29,16 @@
     <!-- Script gestion du click-->
     <script type="application/javascript" src="{% static 'js/onclick.js' %}"></script>
     <!-- Script gestion du click-->
+
+    <!--GOOGLE ANALYTICS-->
+    <script async type="application/javascript" src="https://www.googletagmanager.com/gtag/js?id=G-XWTVE2KTW5"></script>
+    <script type="application/javascript" src="{% static 'js/gtag.js' %}"></script>
+    <!--GOOGLE ANALYTICS-->
+
+    <!-- TITRE -->
+    <title>{% block title %}French Flying Club{% endblock %}</title>
+    <!-- TITRE -->
+
 </head>
 
 <body>
@@ -47,12 +57,14 @@
             </div>
         </div>
     </header>
+    
+    <div class="content-page">
+        <div class="main">
+            {% block content %}
 
-    {% block content %}
-
-
-    {% endblock %}
-
+            {% endblock %}
+        </div>
+    </div>
     <footer>
         <div class="bas">
             <div class="vatsim_footer">
