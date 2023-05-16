@@ -1,4 +1,7 @@
 {% extends "base_en.html" %}
+
+{% block title %}French Flying Club - Liveries MSFS{% endblock %}
+
 {% block content %}
 {% load static %}
 
@@ -53,7 +56,7 @@
       <img src="{{i.photo1.url}}" alt="{{i.immat}}" />
       <img src="{{i.photo2.url}}" alt="{{i.immat}}" />
     </div>
-    <a href="{{i.lien}}" class="bouton-filtre livrees">Download</a>
+    <a href="{{i.fichier.url}}" class="bouton-filtre livrees">Download</a>
   </div>
   {% empty %}
   <div class="frame">

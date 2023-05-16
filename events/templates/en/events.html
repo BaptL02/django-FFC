@@ -1,4 +1,7 @@
 {% extends "base_en.html" %}
+
+{% block title %}French Flying Club - Events{% endblock %}
+
 {% block content %}
 {% load static %}
 
@@ -9,7 +12,7 @@
         <div class="announcement">
             <h2>{{event.title}}</h2>
             <h5>From {{event.format_date_debut}}z to {{event.format_date_fin}}z</h5>
-            <img src="{{event.image}}" alt="{{event.title}}">
+            <img src="{{event.image}}">
             <p>{{event.description |linebreaks }}</p>
         </div>
         {% empty %}
