@@ -18,7 +18,7 @@ def events(request):
     past_events = Event.objects.filter(date_fin__lt=current_datetime).order_by('-date_debut')
     return render(request, "site/events.html", context={
         "upcoming_events": upcoming_events,
-        "past_events": past_events
+        "past_events": past_events,
     })
 
 
