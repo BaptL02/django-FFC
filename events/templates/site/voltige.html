@@ -1,4 +1,7 @@
 {% extends "base.html" %}
+
+{% block title %}French Flying Club - Voltige{% endblock %}
+
 {% block content %}
 {% load static %}
 
@@ -26,7 +29,7 @@
       <img src="{{i.photo1.url}}" alt="{{i.immat}}" />
       <img src="{{i.photo2.url}}" alt="{{i.immat}}" />
     </div>
-    <a href="{{i.lien}}" class="bouton-filtre livrees">Télécharger</a>
+    <a href="{{i.fichier.url}}" class="bouton-filtre livrees">Télécharger</a>
   </div>
   {% endfor %}
 </div>
