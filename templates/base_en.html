@@ -31,8 +31,15 @@
     <!-- Script gestion du click-->
 
     <!--GOOGLE ANALYTICS-->
-    <script async type="application/javascript" src="https://www.googletagmanager.com/gtag/js?id=G-XWTVE2KTW5"></script>
-    <script type="application/javascript" src="{% static 'js/gtag.js' %}"></script>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XWTVE2KTW5"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-XWTVE2KTW5');
+    </script>
     <!--GOOGLE ANALYTICS-->
 
     <!-- TITRE -->
