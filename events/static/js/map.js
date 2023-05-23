@@ -19,7 +19,7 @@ function fetchData(){
       let tableau_altitude = [];
 
       data.pilots.forEach(pilot => {
-        if (pilot.callsign.startsWith('DLH')) {
+        if (pilot.callsign.startsWith('FBT')) {
           tableau_long.push(pilot.longitude);
           tableau_lat.push(pilot.latitude);
           tableau_callsign.push(pilot.callsign);
