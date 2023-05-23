@@ -907,6 +907,72 @@ input[type="checkbox" i] {
   margin: 0px;
 }
 
-
 /*END FILTRAGE*/
 
+/*STATS*/
+
+/* Style pour le tableau */
+#vol {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: Arial, sans-serif;
+}
+
+/* Style pour la légende */
+#vol caption {
+  caption-side: top;
+  font-weight: bold;
+  font-size: 1.2em;
+  padding: 10px;
+  background-color: #2483c5;
+  color: #ffffff;
+}
+
+/* Style pour l'en-tête du tableau */
+#vol th {
+  background-color: #63a1ce;
+  color: #ffffff;
+  padding: 10px;
+}
+
+/* Style pour les cellules du tableau */
+#vol td {
+  border: 1px solid #dddddd;
+  padding: 8px;
+}
+
+/* Style pour les lignes impaires du tableau */
+#vol tr:nth-child(odd) {
+  background-color: #f2f2f2;
+}
+
+/* Style pour le texte des cellules */
+#vol td:nth-child(n+3) {
+  text-align: center;
+}
+
+#map{
+  height: 400px;
+  margin: 25px 0 25px 0;
+}
+
+.legend {
+  background-color: #2483c5; /* Définit un fond blanc pour la légende */
+  padding: 10px;
+  border-radius: 5px;
+  /* Ajoutez d'autres styles de positionnement si nécessaire */
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+}
+
+.legend-item img {
+  width: 20px; /* Ajustez la taille de l'image selon vos besoins */
+  height: 20px;
+  margin-right: 5px; /* Espace entre l'image et le texte */
+}
+
+
+/*END STATS*/
