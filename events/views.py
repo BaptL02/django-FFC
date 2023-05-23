@@ -52,6 +52,9 @@ def voltige(request):
     livree = Livree.objects.filter(simulateur = "PAF")
     return render(request, "site/voltige.html", context={"livrees" : livree})
 
+def stats(request):
+    return render(request, "site/stats.html")
+
 def livrees_XP(request):
     livree = Livree.objects.filter(simulateur = "XP")
     return render(request, "site/livrees_xp.html", context={"livrees" : livree})
