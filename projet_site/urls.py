@@ -16,6 +16,7 @@ from events.views import voltige
 from events.views import formation_list
 from events.views import privacy_policy
 from events.views import vmr_list
+from events.views import stats
 
 #import ANGLAIS
 from events.views import en_index
@@ -45,6 +46,7 @@ urlpatterns = [
     path('livrees_xp/', livrees_XP, name="livrees_XP"),
     path('contact/privacy_policy/', privacy_policy, name="privacy_policy"),
     path('livrees/vmr/', vmr_list, name="vmr_list" ),
+    path('stats', stats, name="stats"),
 
     #Lien ANGLAIS
     path('en/', en_index, name="en_index"),
