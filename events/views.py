@@ -113,7 +113,7 @@ def livrees_MSFS(request):
 
 
 def WF(request):
-    return render(request, "site/WF-2023.html")
+    return render(request, "site/wf-2023.html")
 
 # views ANGLAIS
 
