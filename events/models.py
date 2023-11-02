@@ -9,6 +9,8 @@ event
 -date_debut
 -end_time
 """
+
+
 class Event(models.Model):
     title = models.CharField(max_length=128)
     description = models.TextField(max_length=1000)
@@ -16,13 +18,16 @@ class Event(models.Model):
     date_fin = models.DateTimeField()
     event_id = models.IntegerField()
     image = models.URLField(blank=True)
+
     def __str__(self):
         return f"{self.title} ({self.date_debut})"
-    
+
     def format_date_debut(self):
         return self.date_debut.strftime("%A %d %B à %H%M")
+
     def format_date_fin(self):
         return self.date_fin.strftime("%A %d %B à %H%M")
+
 
 """
 Annonce 
@@ -32,6 +37,7 @@ Annonce
 - annonce_id
 """
 
+
 class Annonce(models.Model):
     title = models.CharField(max_length=255)
     author = models.CharField(max_length=100)
@@ -40,6 +46,7 @@ class Annonce(models.Model):
 
     def __str__(self):
         return f"{self.title}"
+
 
 """
 Livrees
@@ -52,6 +59,7 @@ Livrees
 - Page d'affichage
 - Catégorie de filtrage
 """
+
 
 class Livree(models.Model):
     avion = models.CharField(max_length=100)
@@ -77,9 +85,9 @@ class Livree(models.Model):
         default=MFS,
     )
 
-    #FILTRAGE
-    
-    #filtre1
+    # FILTRAGE
+
+    # filtre1
 
     AIRBUS = 'AIRBUS'
     BOEING = 'BOEING'
@@ -98,8 +106,8 @@ class Livree(models.Model):
         blank=True
     )
 
-    #filtre2
-    
+    # filtre2
+
     CLASSIQUE = 'CLASSIQUE'
     SPECIALE = 'SPECIALE'
 
@@ -115,8 +123,8 @@ class Livree(models.Model):
         blank=True
     )
 
-    #filtre3
-    
+    # filtre3
+
     LINER = 'LINER'
     AFFAIRE = 'AFFAIRE'
     GENERAL = 'GENERAL'
@@ -142,12 +150,14 @@ class Livree(models.Model):
     def __str__(self):
         return f" {self.ordre} / {self.simulateur} - {self.avion} ({self.editeur})"
 
+
 """
 Doc
 - Titre
 - Lien 
 - Catégorie 
 """
+
 
 class doc(models.Model):
     titre = models.CharField(max_length=500)
@@ -167,12 +177,14 @@ class doc(models.Model):
     def __str__(self):
         return f"{self.titre} ({self.categorie})"
 
+
 """
 Formations
 - Titre
 - Lien
 - Image
 """
+
 
 class formation(models.Model):
     titre = models.CharField(max_length=300)
@@ -182,11 +194,13 @@ class formation(models.Model):
     def __str__(self):
         return f"{self.titre}"
 
+
 """
 VMR
 - Titre
 - Lien 
 """
+
 
 class VMR(models.Model):
     titre = models.CharField(max_length=200)
@@ -195,11 +209,14 @@ class VMR(models.Model):
     def __str__(self):
         return f"{self.titre}"
 
+
 """
 alert
 - Contenu
 - Lien
 """
+
+
 class ALERT(models.Model):
     contenu = models.CharField(max_length=124)
     hyperlink_msg = models.CharField(max_length=30, blank=True)
@@ -207,95 +224,3 @@ class ALERT(models.Model):
 
     def __str__(self):
         return f"{self.contenu}"
-    
-"""
-QCM
-- Question
-- Reponses
-- Niveau
-- Sujet
-"""
-class QCM(models.Model):
-    question = models.CharField(max_length=2000)
-    reponse1 = models.CharField(max_length=1000)
-    reponse2 = models.CharField(max_length=1000)
-    reponse3 = models.CharField(max_length=1000, blank=True)
-    reponse4 = models.CharField(max_length=1000, blank=True)
-    id = models.AutoField(primary_key=True)
-
-    list_rep = [
-        (1, 'Reponse 1'),
-        (2, 'Reponse 2'),
-        (3, 'Reponse 3'),
-        (4, 'Reponse 4')
-    ]
-
-    reponse_correct = models.CharField(
-        max_length=1,
-        choices=list_rep,
-        default=1
-    )
-
-
-    P1 = 'P1'
-    P2 = 'P2'
-    P3 = 'P3'
-    P4 = 'P4'
-    NIVEAU = [
-        (P1, 'P1'),
-        (P2, 'P2'),
-        (P3, 'P3'),
-        (P4, 'P4'),
-    ]
-    Niveau = models.CharField(
-        max_length=2,
-        choices=NIVEAU,
-        default=P1,
-    )
-
-    Law = 'Air Law'
-    HPL = 'Human Performance'
-    Meteo = 'Meteorologie'
-    Coms = 'Communications'
-    POF = 'Principles of flight'
-    FPM = 'Flight Performance and Planning'
-    AGK = 'Aircraft General Knowledge'
-    NAV = 'Navigation'
-    SUJET = [
-        (Law, 'Air Law'),
-        (HPL, 'Human Performance'),
-        (Meteo, 'Meteorologie'),
-        (Coms, 'Communications'),
-        (POF, 'Principles of flight'),
-        (FPM, 'Flight Performance and Planning'),
-        (AGK, 'Aircraft General Knowledge'),
-        (NAV, 'Navigation'),
-    ]
-    SUJET = models.CharField(
-        max_length=100,
-        choices=SUJET,
-        default=P1,
-    )
-
-    def __str__(self):
-        return f"Question : {self.id}"
-    
-    
-"""
-ELEVE
-- CID
-- Prenom
-- Nom
-- score_P1
-"""
-class ELEVE(models.Model):
-    CID = models.CharField(max_length=10)
-    prenom = models.CharField(max_length=30)
-    nom = models.CharField(max_length=30)
-    autorisation_P1 = models.BooleanField(default=False)
-    score_P1 = models.IntegerField(blank=True, default=0)
-    autorisation_P2 = models.BooleanField(default=False)
-    score_P2 = models.IntegerField(blank=True, default=0)
-
-    def __str__(self):
-        return f"{self.CID}"
