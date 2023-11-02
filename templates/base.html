@@ -1,6 +1,6 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" class="no-js">
 
 <head>
     <!-- CSS -->
@@ -8,6 +8,7 @@
 
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/vaakash/socializer@2f749eb/css/socializer.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css">
+
     <!-- CSS -->
 
     <!-- META -->
@@ -46,26 +47,61 @@
     <title>{% block title %}French Flying Club{% endblock %}</title>
     <!-- TITRE -->
 
-</head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+	<link rel="stylesheet" href="{% static 'default.css' %}"/>
+	<link rel="stylesheet" href="{% static 'component.css' %}" />
+	<script type="application/javascript" src="{% static 'js/modernizr.custom.js' %}"></script>
 
+</head>
 <body>
-    <header>
-        <img id="img1" src="{% static 'asset/Flying_Club_vACC-Logo-500.png' %}" alt="logo" />
-        <div class="nav_links">
-            <a href="{% url 'index' %}">Le Club</a>
-            <a href="{% url 'stats' %}">Statistiques</a>
-            <a href="{% url 'events' %}">Événements</a>
-            <a href="{% url 'livrees' %}">Nos Livrées</a>
-            <a href="{% url 'doc' %}">Documentation</a>
-            <a href="{% url 'voltige' %}">Pains Acrobatiques</a>
-            <a href="{% url 'contact' %}">Contact</a>
-        </div>
-            <div id="lang_img">
-                <a href="/en/"><img src="{% static 'asset/en.png' %}" alt="en" /></a>
-            </div>
-        </div>
-    </header>
-    
+<div class="corps">
+		<div class="container-2">
+			<div class="main">
+                <div class="banniere">
+                <img src="{% static 'asset/dasistperfektion.png' %}" alt="banniere"></div>
+				<nav class="cbp-hsmenu-wrapper" id="cbp-hsmenu-wrapper">
+					<div class="cbp-hsinner">
+						<ul class="cbp-hsmenu">
+							<li>
+								<a href="#" class="menu">Le club</a>
+								<ul class="cbp-hssubmenu">
+                                    <li><a href="{% url 'index' %}" class="menu"><img src="{% static 'asset/index_icon.png' %}" alt="img01" width="25%"/><span>Accueil</span></a></li>
+									<li><a href="{% url 'events' %}" class="menu"><img src="{% static 'asset/event_icon.png' %}" alt="img01" width="25%"/><span>Evenements</span></a></li>
+									<li><a href="{% url 'doc' %}" class="menu"><img src="{% static 'asset/doc_icon.png' %}" alt="img02" width="25%"/><span>Documentation</span></a></li>
+									<li><a href="{% url 'voltige' %}" class="menu"><img src="{% static 'asset/paf_icon.png' %}" alt="img03" width="25%"/><span>Pains acrobatiques</span></a></li>
+								</ul>
+							</li>
+							<li>
+								<a href="#" class="menu">Statistiques</a>
+								<ul class="cbp-hssubmenu cbp-hssub-rows">
+									<li><a href="{% url 'stats' %}" class="menu"><img src="{% static 'asset/avion_icon.png' %}" alt="img07" width="25%"/><span>Vol en cours</span></a></li>
+									<li><a href="#" class="menu"><img src="{% static 'asset/soon.png' %}" alt="img08" width="25%"/><span>Carnet de vol</span></a></li>
+									<li><a href="#" class="menu"><img src="{% static 'asset/soon.png' %}" alt="img09" width="25%"/><span>Statistiques club</span></a></li>
+									<li><a href="#" class="menu"><img src="{% static 'asset/soon.png' %}" alt="img10" width="25%"/><span>Statistiques personnelles</span></a></li>
+								</ul>
+							</li>
+							<li>
+								<a href="#" class="menu">Nos livrées</a>
+								<ul class="cbp-hssubmenu">
+									<li><a href="{% url 'livrees_MSFS' %}" class="menu"><img src="{% static 'asset/MFS2-ConvertImage.png' %}" alt="img10" width="50%"/><span>Livrées MFS</span></a></li>
+									<li><a href="{% url 'livrees_XP' %}" class="menu"><img src="{% static 'asset/xplane11-ConvertImage.png' %}" alt="img06" width="50%"/><span>Livrées X-plane</span></a></li>
+									<li><a href="https://docs.google.com/document/d/10nxibBRj1BUivE220l7iAyJBlbuNORUlgvFwf9Gv6Xg/edit" class="menu"><img src="{% static 'asset/link_icon.png' %}" alt="img09" width="25%"/><span>Tutoriel d'installation des VMR</span></a></li>
+									<li><a href="{% url 'vmr_list' %}" class="menu"><img src="{% static 'asset/vatsim_icon.png' %}" alt="img09" width="50%"/><span>Lien vers les fichiers VMR</span></a></li>
+								</ul>
+							</li>
+
+							<li><a href="{% url 'en_index' %}" class="menu">In English please</a></li>
+						</ul>
+					</div>
+				</nav>
+			</div>
+		</div>
+		<script type="application/javascript" src="{% static 'js/cbpHorizontalSlideOutMenu.min.js' %}"></script>
+		<script>
+			var menu = new cbpHorizontalSlideOutMenu( document.getElementById( 'cbp-hsmenu-wrapper' ) );
+		</script>
+    </div>
+
     <div class="content-page">
         <div class="main">
             {% block content %}
@@ -73,6 +109,7 @@
             {% endblock %}
         </div>
     </div>
+
     <footer>
         <div class="bas">
             <div class="vatsim_footer">
