@@ -46,7 +46,7 @@ urlpatterns = [
     path('contact/privacy_policy/', privacy_policy, name="privacy_policy"),
     path('livrees/vmr/', vmr_list, name="vmr_list"),
     path('stats', stats, name="stats"),
-    path('events/worldflight', WF, name='worldflight'),
+    path('events/worldflight', WF, name='WF'),
 
     # Lien ANGLAIS
     path('en/', en_index, name="en_index"),
