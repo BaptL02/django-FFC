@@ -207,3 +207,95 @@ class ALERT(models.Model):
 
     def __str__(self):
         return f"{self.contenu}"
+    
+"""
+QCM
+- Question
+- Reponses
+- Niveau
+- Sujet
+"""
+class QCM(models.Model):
+    question = models.CharField(max_length=2000)
+    reponse1 = models.CharField(max_length=1000)
+    reponse2 = models.CharField(max_length=1000)
+    reponse3 = models.CharField(max_length=1000, blank=True)
+    reponse4 = models.CharField(max_length=1000, blank=True)
+    id = models.AutoField(primary_key=True)
+
+    list_rep = [
+        (1, 'Reponse 1'),
+        (2, 'Reponse 2'),
+        (3, 'Reponse 3'),
+        (4, 'Reponse 4')
+    ]
+
+    reponse_correct = models.CharField(
+        max_length=1,
+        choices=list_rep,
+        default=1
+    )
+
+
+    P1 = 'P1'
+    P2 = 'P2'
+    P3 = 'P3'
+    P4 = 'P4'
+    NIVEAU = [
+        (P1, 'P1'),
+        (P2, 'P2'),
+        (P3, 'P3'),
+        (P4, 'P4'),
+    ]
+    Niveau = models.CharField(
+        max_length=2,
+        choices=NIVEAU,
+        default=P1,
+    )
+
+    Law = 'Air Law'
+    HPL = 'Human Performance'
+    Meteo = 'Meteorologie'
+    Coms = 'Communications'
+    POF = 'Principles of flight'
+    FPM = 'Flight Performance and Planning'
+    AGK = 'Aircraft General Knowledge'
+    NAV = 'Navigation'
+    SUJET = [
+        (Law, 'Air Law'),
+        (HPL, 'Human Performance'),
+        (Meteo, 'Meteorologie'),
+        (Coms, 'Communications'),
+        (POF, 'Principles of flight'),
+        (FPM, 'Flight Performance and Planning'),
+        (AGK, 'Aircraft General Knowledge'),
+        (NAV, 'Navigation'),
+    ]
+    SUJET = models.CharField(
+        max_length=100,
+        choices=SUJET,
+        default=P1,
+    )
+
+    def __str__(self):
+        return f"Question : {self.id}"
+    
+    
+"""
+ELEVE
+- CID
+- Prenom
+- Nom
+- score_P1
+"""
+class ELEVE(models.Model):
+    CID = models.CharField(max_length=10)
+    prenom = models.CharField(max_length=30)
+    nom = models.CharField(max_length=30)
+    autorisation_P1 = models.BooleanField(default=False)
+    score_P1 = models.IntegerField(blank=True, default=0)
+    autorisation_P2 = models.BooleanField(default=False)
+    score_P2 = models.IntegerField(blank=True, default=0)
+
+    def __str__(self):
+        return f"{self.CID}"

@@ -10,6 +10,8 @@ from events.models import doc
 from events.models import formation
 from events.models import VMR
 from events.models import ALERT
+from events.models import QCM
+from events.models import ELEVE
 
 admin.site.register(Event)
 admin.site.register(Annonce)
@@ -18,3 +20,5 @@ admin.site.register(formation)
 admin.site.register(VMR)
 admin.site.register(ALERT)
 admin.site.register(Livree)
+admin.site.register(QCM)
+admin.site.register(ELEVE)

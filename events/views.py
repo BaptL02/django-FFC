@@ -12,10 +12,13 @@ from events.models import ALERT
 
 # VIEWS FRANCAIS.
 
+
 def events(request):
     current_datetime = datetime.utcnow()
-    upcoming_events = Event.objects.filter(Q(date_debut__gt=current_datetime) | Q(date_fin__gt=current_datetime, date_debut__lte=current_datetime)).order_by('date_debut')
-    past_events = Event.objects.filter(date_fin__lt=current_datetime).order_by('-date_debut')
+    upcoming_events = Event.objects.filter(Q(date_debut__gt=current_datetime) | Q(
+        date_fin__gt=current_datetime, date_debut__lte=current_datetime)).order_by('date_debut')
+    past_events = Event.objects.filter(
+        date_fin__lt=current_datetime).order_by('-date_debut')
     return render(request, "site/events.html", context={
         "upcoming_events": upcoming_events,
         "past_events": past_events,
@@ -25,48 +28,54 @@ def events(request):
 def index(request):
     annonce = Annonce.objects.order_by('-id')
     alerts = ALERT.objects.all()
-    return render(request, "site/index.html",     
-    context = {
-        "annonces": annonce,
-        "alerts": alerts,
-    })
+    return render(request, "site/index.html",
+                  context={
+                      "annonces": annonce,
+                      "alerts": alerts,
+                  })
+
 
 def docs(request):
     docs = doc.objects.all()
     return render(request, "site/doc.html", context={"docs": docs})
 
+
 def contact(request):
     return render(request, "site/contact.html")
 
-def livrees(request):
-    return render(request, "site/livrees.html")
 
 def vmr_list(request):
     vmr = VMR.objects.all()
-    return render(request, "site/vmr.html", context={"vmr" : vmr})
+    return render(request, "site/vmr.html", context={"vmr": vmr})
+
 
 def privacy_policy(request):
     return render(request, "site/privacy_policy.html")
 
+
 def voltige(request):
-    livree = Livree.objects.filter(simulateur = "PAF")
-    return render(request, "site/voltige.html", context={"livrees" : livree})
+    livree = Livree.objects.filter(simulateur="PAF")
+    return render(request, "site/voltige.html", context={"livrees": livree})
+
 
 def stats(request):
     return render(request, "site/stats.html")
 
+
 def livrees_XP(request):
-    livree = Livree.objects.filter(simulateur = "XP")
-    return render(request, "site/livrees_xp.html", context={"livrees" : livree})
+    livree = Livree.objects.filter(simulateur="XP")
+    return render(request, "site/livrees_xp.html", context={"livrees": livree})
+
 
 def formation_list(request):
     formations = formation.objects.all()
     q = request.GET.get('q')
     if q:
         formations = formations.filter(
-            Q(titre__icontains=q) 
+            Q(titre__icontains=q)
         )
     return render(request, 'site/formation.html', {'formations': formations})
+
 
 def livrees_MSFS(request):
     livrees = Livree.objects.filter(simulateur="MFS")
@@ -102,33 +111,41 @@ def livrees_MSFS(request):
     }
     return render(request, 'site/livrees_MSFS.html', context)
 
-#views ANGLAIS
+
+def WF(request):
+    return render(request, "site/WF-2023.html")
+
+# views ANGLAIS
+
 
 def en_index(request):
     annonce = Annonce.objects.order_by('-id')
-    return render(request, "en/index.html", context={"annonces" : annonce})
+    return render(request, "en/index.html", context={"annonces": annonce})
+
 
 def en_docs(request):
     docs = doc.objects.all()
     return render(request, "en/doc.html", context={"docs": docs})
 
+
 def en_contact(request):
     return render(request, "en/contact.html")
 
-def en_livrees(request):
-    return render(request, "en/livrees.html")
 
 def en_vmr_list(request):
     vmr = VMR.objects.all()
-    return render(request, "en/vmr.html", context={"vmr" : vmr})
+    return render(request, "en/vmr.html", context={"vmr": vmr})
+
 
 def en_voltige(request):
-    livree = Livree.objects.filter(simulateur = "PAF")
-    return render(request, "en/voltige.html", context={"livrees" : livree})
+    livree = Livree.objects.filter(simulateur="PAF")
+    return render(request, "en/voltige.html", context={"livrees": livree})
+
 
 def en_livrees_XP(request):
-    livree = Livree.objects.filter(simulateur = "XP")
-    return render(request, "en/livrees_xp.html", context={"livrees" : livree})
+    livree = Livree.objects.filter(simulateur="XP")
+    return render(request, "en/livrees_xp.html", context={"livrees": livree})
+
 
 def en_events(request):
     current_date = datetime.now().date()
@@ -139,14 +156,16 @@ def en_events(request):
         "past_events": past_events
     })
 
+
 def en_formation_list(request):
     formations = formation.objects.all()
     q = request.GET.get('q')
     if q:
         formations = formations.filter(
-            Q(titre__icontains=q) 
+            Q(titre__icontains=q)
         )
     return render(request, 'en/formation.html', {'formations': formations})
+
 
 def en_livrees_MSFS(request):
     livrees = Livree.objects.filter(simulateur="MFS")
@@ -181,3 +200,7 @@ def en_livrees_MSFS(request):
         'livrees': livrees
     }
     return render(request, 'en/livrees_MSFS.html', context)
+
+
+def en_WF(request):
+    return render(request, "en/wf-2023-en.html")
