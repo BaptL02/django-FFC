@@ -29,7 +29,7 @@ from events.views import en_events
 from events.views import en_livrees_MSFS
 from events.views import en_formation_list
 from events.views import en_WF
-
+from events.views import carnetdevol
 urlpatterns = [
 
     # Lien FRANCAIS
@@ -47,6 +47,7 @@ urlpatterns = [
     path('livrees/vmr/', vmr_list, name="vmr_list"),
     path('stats', stats, name="stats"),
     path('events/worldflight', WF, name='WF'),
+    path('stats/carnetdevol', carnetdevol, name="carnetdevol"),
 
     # Lien ANGLAIS
     path('en/', en_index, name="en_index"),
