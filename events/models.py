@@ -1,5 +1,5 @@
 from django.db import models
-import locale
+from django.utils import formats
 
 # Create your models here.
 """
@@ -224,3 +224,26 @@ class ALERT(models.Model):
 
     def __str__(self):
         return f"{self.contenu}"
+
+"""
+Vol
+"""
+class VOL(models.Model):
+    callsign = models.CharField(max_length=20)
+    pilote = models.CharField(max_length=100)
+    cid = models.CharField(max_length=15)
+    depart = models.CharField(max_length=4)
+    destination = models.CharField(max_length=4)
+    avion = models.CharField(max_length=4)
+    regime = models.CharField(max_length=3)
+    date_co = models.DateTimeField(null=True, default=None)
+    date_logoff = models.DateTimeField(blank=True, null=True, default=None)
+    temps_co = models.DurationField(blank=True, null=True, default=None)
+
+    def formatted_date_co(self):
+        if self.date_co:
+            return self.date_co.strftime('%d/%m/%Y %H:%M')
+        return ""
+
+    def __str__(self):
+        return f"{self.pilote} - {self.cid} : {self.callsign} / {self.date_co}"

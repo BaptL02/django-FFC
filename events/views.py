@@ -1,4 +1,5 @@
 from django.shortcuts import render
+
 from django.db.models import Q
 from datetime import datetime
 
@@ -9,9 +10,12 @@ from events.models import doc
 from events.models import formation
 from events.models import VMR
 from events.models import ALERT
+from events.models import VOL
+
+from events.calcul_stats import temps_totale
+from events.calcul_stats import temps_vol_cid
 
 # VIEWS FRANCAIS.
-
 
 def events(request):
     current_datetime = datetime.utcnow()
@@ -24,7 +28,6 @@ def events(request):
         "past_events": past_events,
     })
 
-
 def index(request):
     annonce = Annonce.objects.order_by('-id')
     alerts = ALERT.objects.all()
@@ -33,7 +36,6 @@ def index(request):
                       "annonces": annonce,
                       "alerts": alerts,
                   })
-
 
 def docs(request):
     docs = doc.objects.all()
@@ -111,6 +113,19 @@ def livrees_MSFS(request):
     }
     return render(request, 'site/livrees_MSFS.html', context)
 
+def carnetdevol(request):
+    vols = VOL.objects.all().order_by('-date_co')
+
+    temps = temps_totale()
+
+    q = request.GET.get('q')
+    if q:
+        temps = temps_vol_cid(q)
+        vols = vols.filter(
+            Q(cid__icontains=q)
+        )
+
+    return render(request, "site/carnetdevol.html", context= {"vols" : vols, "temps" : temps})
 
 def WF(request):
     return render(request, "site/wf-2023.html")
