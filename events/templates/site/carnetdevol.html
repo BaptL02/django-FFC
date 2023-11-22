@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block title %}French Flying Club - Statistiques{% endblock %}
+
+{% block content %}
+{% load static %}
+
+<form method="GET" action="{% url 'carnetdevol' %}" class="search-form">
+    <input type="text" name="q" placeholder="Recherche par CID">
+    <input type="submit" value="Recherche" class="bouton-filtre">
+    <input type="submit" value="Annuler" data-url="{% url 'carnetdevol' %}" onclick="location.href=this.dataset.url">
+  </form>
+
+<table id="vol" style="margin-top: 25px;">
+    <caption>Carnet de vol ({{ temps }})</caption>
+    <tr>
+        <th>Callsign</th>
+        <th>Pilote</th>
+        <th>CID</th>
+        <th>Départ</th>
+        <th>Destination</th>
+        <th>Avion</th>
+        <th>Régime</th>
+        <th>Date de connexion</th>
+        <th>Temps de vol</th>
+    </tr>
+    {% for vol in vols %}
+    <tr>
+        <td>{{ vol.callsign }}</td>
+        <td>{{ vol.pilote }}</td>
+        <td>{{ vol.cid }}</td>
+        <td>{{ vol.depart }}</td>
+        <td>{{ vol.destination }}</td>
+        <td>{{ vol.avion }}</td>
+        <td>{{ vol.regime }}</td>
+        <td>{{ vol.formatted_date_co }}</td>
+        {% if vol.temps_co is none %}
+            <td>En vol</td>
+        {% else %}
+            <td>{{ vol.temps_co }}</td>
+        {% endif %}
+    </tr>
+    {% endfor %}
+</table>
+
+{% endblock %}

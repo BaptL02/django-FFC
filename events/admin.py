@@ -6,6 +6,7 @@ from events.models import Livree
 from events.models import Annonce
 from events.models import Event
 from django.contrib import admin
+from events.models import VOL
 
 admin.site.site_header = 'French Flying Club administration'
 
@@ -18,3 +19,4 @@ admin.site.register(formation)
 admin.site.register(VMR)
 admin.site.register(ALERT)
 admin.site.register(Livree)
+admin.site.register(VOL)
